@@ -1,7 +1,7 @@
 <script setup>
 
 import { computed, ref } from 'vue'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
+import { CheckIcon, ChevronDownIcon } from '@heroicons/vue/20/solid'
 import {
   Combobox,
   ComboboxButton,
@@ -17,9 +17,11 @@ defineProps({
 
 defineEmits([])
 
+const inputControl = ref(null)
 const standardTitles = ['Mr', 'Mrs', 'Miss', 'Ms', 'Dr.', 'Rev.', 'Prof.', 'Other']
 const query = ref('')
 const selectedTitle = ref(null)
+const otherInput = ref(null)
 
 const filteredTitles = computed(() => {
   return query.value === ''
@@ -33,18 +35,30 @@ const showOther = computed(() => {
   return selectedTitle.value === 'Other'
 })
 
+const onLeaveFocus = () => {
+}
+
+const onUpdated = (value) => {
+  if (value === 'Other') {
+    setTimeout(() => {
+      otherInput.value.focus()
+    }, 0)
+  }
+}
+
+
 </script>
 
 <template>
   <div class="flex items-end space-x-1">
-    <combobox as="div" v-model="selectedTitle" class="w-28">
+    <combobox as="div" v-model="selectedTitle" @update:model-value="onUpdated" class="w-28">
       <combobox-label class="block text-sm font-medium leading-6 text-gray-900">{{ label }}</combobox-label>
       <div class="relative mt-2">
-        <combobox-input
+        <combobox-input ref="inputControl" :onfocusout="onLeaveFocus()"
           class="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          @change="query = $event.target.value" :display-value="(person) => person" />
+          @change="query = $event.target.value" :display-value="(person) => person"/>
         <combobox-button class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
-          <chevron-up-down-icon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+          <chevron-down-icon class="h-5 w-5 text-gray-400" aria-hidden="true" />
         </combobox-button>
         <combobox-options v-if="filteredTitles.length > 0"
           class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
@@ -64,9 +78,9 @@ const showOther = computed(() => {
         </combobox-options>
       </div>
     </combobox>
-    <input v-if="showOther" type="email" name="email" id="email"
-      class="h-8 mb-[2px] w-28 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-      placeholder="you@example.com" />
+    <input v-if="showOther" type="text" ref="otherInput"
+      class="h-8 mb-[2px] w-44 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+      placeholder="e.g., Lady, Sir, Rt Hon." />
   </div>
 </template>
 

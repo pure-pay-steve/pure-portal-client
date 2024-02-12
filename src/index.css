@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    :root {
+        --color-bkg: 210deg 40% 98%;
+        --color-content: 217deg 32.6% 17.5%;
+        --color-feint: 0deg 0% 90%;
+        --color-card-container: 300deg 37.5% 90.9%;
+        --color-input-label: 219deg 100% 36%;
+    }
+
+    @media (prefers-color-scheme:dark) {
+        :root {
+            --color-bkg: 217deg 32.6% 17.5%;
+            --color-content: 210deg 40% 98%;
+            --color-feint: 0deg 0% 90%;
+            --color-card-container: 220deg 14.3% 95.9%;
+            --color-input-label: 219deg 100% 36%;
+        }
+    }
+}

@@ -1,10 +1,8 @@
 <script setup>
 
 import { ref } from 'vue'
-import { Disclosure, DisclosureButton, DisclosurePanel, Switch } from '@headlessui/vue'
-import { ChevronUpIcon } from '@heroicons/vue/20/solid'
-import TitleSelector from './components/TitleSelector.vue'
-import { PhotoIcon, UserCircleIcon } from '@heroicons/vue/24/solid'
+
+import EmployeeView from './views/EmployeeView.vue'
 
 const enabled = ref(false)
 
@@ -65,8 +63,9 @@ const enabled = ref(false)
   ```
 -->
 <template>
-  <form class="md:ml-64 mt-8 md:mr-24 m-8">
-    <div class="space-y-2">
+    <employee-view></employee-view>
+  <!-- <form class="md:ml-64 mt-8 md:mr-24 m-8">
+    <div class="space-y-2 bg-bkg">
       <div class="border-b border-gray-900/10 pb-12">
 
         <h2 class="text-base font-semibold leading-7 text-gray-900">Employee Details</h2>
@@ -112,6 +111,10 @@ const enabled = ref(false)
               <span aria-hidden="true"
                 :class="[enabled ? 'translate-x-5' : 'translate-x-0', 'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out']" />
             </Switch>
+          </div>
+
+          <div>
+            <gender-toggle top-label="Gender" left-label="Male" right-label="Female"></gender-toggle>
           </div>
 
           <div class="sm:col-span-full">
@@ -235,7 +238,7 @@ const enabled = ref(false)
       <button type="submit"
         class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
     </div>
-  </form>
+  </form> -->
 </template>
 
 
