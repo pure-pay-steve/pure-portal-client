@@ -1,36 +1,34 @@
 <script setup lang="ts">
 
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+
 import Collapsible from '../components/Collapsible.vue'
 import LabelledInput from '../components/LabelledInput.vue'
 import FlexBreak from '../components/FlexBreak.vue'
-import TitleSelector from '../components/TitleSelector.vue'
-import GenderToggle from '../components/GenderToggle.vue'
+import DirectorsNiSelector from '../components/DirectorsNiSelector.vue'
+import TaxCode from '../components/TaxCode.vue'
+import NiDetails from './NiDetails.vue'
+import DateSelector from './DateSelector.vue'
+import StudentLoanSelector from './StudentLoanSelector.vue'
 
-// defineProps({
-// })
-
-// defineEmits([])
 
 </script>
 
 <template>
-    <div class="bg-bkg">
-        <collapsible header="Employment details" default-open>
-            <div class="flex flex-wrap">
-                <title-selector></title-selector>
-                <flex-break />
-                <labelled-input label="First name"></labelled-input>
-                <labelled-input label="Middle name(s)"></labelled-input>
-                <labelled-input label="Surname"></labelled-input>
-                <flex-break />
-                <gender-toggle top-label="Gender" left-label="Male" right-label="Female"></gender-toggle>
+    <div class="mt-6">
+        <div class="flex flex-wrap gap-x-4 gap-y-2">
+            <date-selector label="Employment start date" />
+            <labelled-input label="Payroll Id" placeholder="Leave blank to auto-populate"/>
+            <flex-break />
+            <tax-code />
+            <flex-break />
+            <ni-details />
+            <flex-break />
+            <directors-ni-selector class="flex-wrap" />
+            <flex-break />
+            <student-loan-selector />
         </div>
-        </collapsible>
     </div>
-
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -9,14 +9,24 @@
 
 import { ref } from 'vue'
 
-defineProps({
-})
+import NiNumber from './NiNumber.vue'
+import Dropdown from './Dropdown.vue'
 
-defineEmits([])
+const niLetters = [['A', 'A'], ['B', 'B'], ['C', 'C'], ['F', 'F'], ['H', 'H'], ['I', 'I'], ['J', 'J'], ['L', 'L'], ['M', 'M'], ['S', 'S'], ['V', 'V'], ['X', 'X'], ['Z', 'Z']] as [string, string][]
+
+// defineProps({
+// })
+
+// defineEmits([])
 
 </script>
 
 <template>
+    <div class="flex flex-row gap-x-4">
+        <ni-number class="" label="National Insurance number" />
+        <dropdown class="-mt-2" label="NI category letter"
+            label-position="top" :options="niLetters"/>
+    </div>
 
 </template>
 

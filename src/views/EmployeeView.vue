@@ -18,7 +18,7 @@ const people = ref([
 </script>
 
 <template>
-    <div class="md:ml-72 md:mr-48">
+    <div class="xl:ml-48 xl:mr-96">
         <h1 className="text-3xl font-bold">
             Employees
         </h1>

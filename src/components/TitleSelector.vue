@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import { computed, ref } from 'vue'
-import { CheckIcon, ChevronDownIcon } from '@heroicons/vue/20/solid'
+import { CheckIcon, ChevronDownIcon, XCircleIcon } from '@heroicons/vue/20/solid'
 import {
   Combobox,
   ComboboxButton,
@@ -17,11 +17,13 @@ defineProps({
 
 defineEmits([])
 
-const inputControl = ref<null | { focus: () => null }>(null)
+const inputControl = ref<null | HTMLElement>(null)
 const otherInput = ref<null | { focus: () => null }>(null)
+const emptyComboOption = ref<null | HTMLElement>(null)
 const standardTitles = ['Mr', 'Mrs', 'Miss', 'Ms', 'Dr.', 'Other']
 const query = ref('')
-const selectedTitle = ref(null)
+const selectedTitle = ref<string | null>(null)
+const showDownIcon = ref(true)
 
 const filteredTitles = computed(() => {
   return query.value === ''
@@ -36,9 +38,13 @@ const showOther = computed(() => {
 })
 
 const onLeaveFocus = () => {
+  console.log('leaving focus')
+  console.log(selectedTitle.value)
+  console.log(inputControl.value?.textContent)
+  showDownIcon.value = selectedTitle.value == null || selectedTitle.value === ''
 }
 
-const onUpdated = (value) => {
+const onUpdated = (value: string) => {
   if (value === 'Other') {
     setTimeout(() => {
       if (otherInput.value)
@@ -47,28 +53,46 @@ const onUpdated = (value) => {
   }
 }
 
+const onCrossClick = () => {
+  if (inputControl.value) {
+    inputControl.value.textContent = null
+    query.value = ''    
+  }
+  console.log('cross clicked')
+  selectedTitle.value = null
+  if (emptyComboOption.value) {
+    emptyComboOption.value.setAttribute('disabled', 'false')
+  }
+  showDownIcon.value = true
+  setTimeout(() => {
+      if (inputControl.value)
+        (inputControl.value as any).el.focus()
+    }, 0)
+}
 
 </script>
 
 <template>
   <div class="flex items-end space-x-1">
-    <combobox as="div" v-model="selectedTitle" @update:model-value="onUpdated" class="w-28">
-      <combobox-label class="block text-sm font-medium leading-6 text-gray-900">{{ label }}</combobox-label>
+    <combobox as="div"  v-model="selectedTitle" @update:model-value="onUpdated" @focusout="onLeaveFocus" class="w-28">
+      <combobox-label class="block text-sm font-medium leading-3 text-inputlabel">{{ label }}</combobox-label>
       <div class="relative mt-2">
-        <combobox-input ref="inputControl" :onfocusout="onLeaveFocus()"
+        <combobox-input ref="inputControl"
           class="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          @change="query = $event.target.value" :display-value="(person) => person"/>
+          @change="query = $event.target.value" />
         <combobox-button class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
-          <chevron-down-icon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+          <chevron-down-icon v-if="showDownIcon" class="h-5 w-5 text-gray-400" aria-hidden="true" />
+          <x-circle-icon v-if="!showDownIcon" class="h-5 w-5 text-gray-400" aria-hidden="true" @click.stop="onCrossClick" />
         </combobox-button>
         <combobox-options v-if="filteredTitles.length > 0"
           class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-          <combobox-option v-for="person in filteredTitles" :key="person" :value="person" as="template"
+          <combobox-option ref="emptyComboOption" disabled selected value="" key="null"/>
+          <combobox-option v-for="title in filteredTitles" :key="title" :value="title" as="template"
             v-slot="{ active, selected }">
             <li
               :class="['relative cursor-default select-none py-2 pl-3 pr-9', active ? 'bg-indigo-600 text-white' : 'text-gray-900']">
               <span :class="['block truncate', selected && 'font-semibold']">
-                {{ person }}
+                {{ title }}
               </span>
               <span v-if="selected"
                 :class="['absolute inset-y-0 right-0 flex items-center pr-4', active ? 'text-white' : 'text-indigo-600']">

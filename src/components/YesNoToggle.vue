@@ -12,7 +12,7 @@ import { v4 as uuid } from 'uuid'
 
 const id = ref(uuid())
 const thisControl = ref<null | HTMLElement>(null)
-const checked = ref<null | boolean>(null)
+const checked = ref(false)
 const focusClasses = ref('')
 
 const props = defineProps<{
@@ -82,17 +82,16 @@ onMounted(() => {
 </script>
 
 <template>
-    <div ref="thisControl" class="group flex flex-col outline-none my-2" tabIndex="0">
+    <div ref="thisControl" class="group flex-col outline-none" tabIndex="0">
+        <label :for="id" class="text-inputlabel text-sm font-medium leading-6 ">{{ topLabel }}</label>
 
-        <label :for="id" class="pr-4 text-inputlabel text-sm font-medium leading-3 text-center">{{ topLabel }}</label>
-
-        <div class=" flex-row" :class="focusClasses">
+        <div class="mt-1 flex-row" :class="focusClasses">
 
             <span class="inline-block first-letter:underline group-focus:ml-1 mr-1 select-none my-2"
                 :class="checked ? 'opacity-25' : 'opacity-100'" @click.stop="onLeftLabelClick">{{ leftLabel }}</span>
 
             <div class="inline-block rounded-2xl bg-blue-700 w-10 h-[1.2rem] mx-2" @click="toggle"
-                :class="checked === null ? 'bg-slate-200' : checked ? 'bg-pink-600' : 'bg-blue-700'">
+                :class="checked ? 'bg-blue-700' : 'bg-slate-600'">
 
                 <input type="checkbox" v-model="checked" class="opacity-0 w-0" tabindex="-1" />
                 <span :class="checked === null ? 'translate-x-3' : checked ? 'translate-x-5' : 'translate-x-1'"

@@ -18,10 +18,10 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="border border-feint rounded-md p-1 bg-inherit">
+    <div class="p-1 bg-inherit">
         <disclosure v-slot="{ open }" :default-open="defaultOpen">
-            <disclosure-button class="flex w-full">
-                <span>{{ header }}</span>
+            <disclosure-button class="flex w-full" :class="open ? 'border-b border-b-slate-400' : ''">
+                <span class="font-bold">{{ header }}</span>
                 <chevron-up-icon :class="open ? 'rotate-180 transform' : 'rotate-90 transform'"
                     class="h-5 w-5 text-purple-500 justify-self-start" />
             </disclosure-button>

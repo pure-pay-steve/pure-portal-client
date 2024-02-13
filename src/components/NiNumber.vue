@@ -8,8 +8,10 @@
 <script setup lang="ts">
 
 import { ref } from 'vue'
+import LabelledInput from './LabelledInput.vue'
 
 defineProps({
+    label: String
 })
 
 defineEmits([])
@@ -17,9 +19,7 @@ defineEmits([])
 </script>
 
 <template>
-
+    <labelled-input class="w-48" label="NI number" case-treatment="all-upper"/>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
