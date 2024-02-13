@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 
 import { computed, ref } from 'vue'
 import { CheckIcon, ChevronDownIcon } from '@heroicons/vue/20/solid'
@@ -17,11 +17,11 @@ defineProps({
 
 defineEmits([])
 
-const inputControl = ref(null)
-const standardTitles = ['Mr', 'Mrs', 'Miss', 'Ms', 'Dr.', 'Rev.', 'Prof.', 'Other']
+const inputControl = ref<null | { focus: () => null }>(null)
+const otherInput = ref<null | { focus: () => null }>(null)
+const standardTitles = ['Mr', 'Mrs', 'Miss', 'Ms', 'Dr.', 'Other']
 const query = ref('')
 const selectedTitle = ref(null)
-const otherInput = ref(null)
 
 const filteredTitles = computed(() => {
   return query.value === ''
@@ -41,7 +41,8 @@ const onLeaveFocus = () => {
 const onUpdated = (value) => {
   if (value === 'Other') {
     setTimeout(() => {
-      otherInput.value.focus()
+      if (otherInput.value)
+        otherInput.value.focus()
     }, 0)
   }
 }

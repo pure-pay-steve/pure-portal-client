@@ -1,4 +1,5 @@
-<script setup>
+<script setup lang="ts">
+
 import { ref } from 'vue'
 import Collapsible from '../components/Collapsible.vue'
 import LabelledInput from '../components/LabelledInput.vue'
@@ -6,10 +7,10 @@ import FlexBreak from '../components/FlexBreak.vue'
 import TitleSelector from '../components/TitleSelector.vue'
 import GenderToggle from '../components/GenderToggle.vue'
 
-defineProps({
-})
+// defineProps({
+// })
 
-defineEmits([])
+// defineEmits([])
 
 </script>
 

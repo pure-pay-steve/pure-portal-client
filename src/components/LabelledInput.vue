@@ -1,4 +1,5 @@
-<script setup>
+<script setup lang="ts">
+
 import { ref } from 'vue'
 import { v4 as uuid } from 'uuid'
 

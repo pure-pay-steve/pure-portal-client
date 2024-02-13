@@ -1,4 +1,5 @@
-<script setup>
+<script setup lang="ts">
+
 import { onMounted, ref } from 'vue'
 import { Disclosure, DisclosureButton, DisclosurePanel, Switch } from '@headlessui/vue'
 import { ChevronUpIcon } from '@heroicons/vue/20/solid'
@@ -12,7 +13,6 @@ defineProps({
 defineEmits([])
 
 onMounted(() => {
-    open = true
 })
 
 </script>

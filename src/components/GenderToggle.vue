@@ -101,9 +101,9 @@ onMounted(() => {
 </script>
 
 <template>
-    <div ref="thisControl" class="group flex-col outline-none my-2" :class="focusClasses" tabIndex="0">
-        <label :for="id" class="group-focus:ml-1 text-inputlabel text-sm font-medium leading-6 " @click="onTopLabelClick">{{ topLabel }}</label>
-        <div class="flex-row">
+    <div ref="thisControl" class="group flex-col outline-none my-2" tabIndex="0">
+        <label :for="id" class="text-inputlabel text-sm font-medium leading-6 " @click="onTopLabelClick">{{ topLabel }}</label>
+        <div class=" flex-row" :class="focusClasses" >
 
             <span class="inline-block first-letter:underline group-focus:ml-1 mr-1" @click.stop="onLeftLabelClick">{{ leftLabel }}</span>
 
