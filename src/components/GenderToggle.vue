@@ -16,12 +16,13 @@ const checked = ref<null | boolean>(null)
 const focusClasses = ref('')
 
 const props = defineProps<{
+    modelValue: 'Male' | 'Female' | null | undefined,
     topLabel: string,
     leftLabel: string,
     rightLabel: string
 }>()
 
-const emit = defineEmits(['change'])
+const emit = defineEmits(['update:modelValue'])
 
 const toggle = () => checked.value = !checked.value
 
@@ -54,11 +55,12 @@ const onKeypressDoc = (event: any) => {
             setState(true)
             break
     }
+    event.preventDefault()
 }
 
 watch(() => checked.value, (value) => {
-    console.log('change', value ? props.rightLabel : props.leftLabel)
-    emit('change', value)
+    const gender = value === null ? null : value ? 'Female' : 'Male'
+    emit('update:modelValue', gender)
 })
 
 const onUnload = () => {
@@ -84,23 +86,23 @@ onMounted(() => {
 <template>
     <div ref="thisControl" class="group flex flex-col outline-none my-2" tabIndex="0">
 
-        <label :for="id" class="pr-4 text-inputlabel text-sm font-medium leading-3 text-center">{{ topLabel }}</label>
+        <label :for="id" class="pr-4 text-inputlabel text-sm font-medium leading-3 text-center mb-1">{{ topLabel }}</label>
 
-        <div class=" flex-row" :class="focusClasses">
+        <div class="flex-row p0" :class="focusClasses">
 
-            <span class="inline-block first-letter:underline group-focus:ml-1 mr-1 select-none my-2"
+            <span class="inline-block first-letter:underline group-focus:ml-1 mr-1 select-none"
                 :class="checked ? 'opacity-25' : 'opacity-100'" @click.stop="onLeftLabelClick">{{ leftLabel }}</span>
 
-            <div class="inline-block rounded-2xl bg-blue-700 w-10 h-[1.2rem] mx-2" @click="toggle"
+            <div class="inline-block rounded-2xl bg-blue-700 w-10 h-[1.35rem] mx-2 mt-1 pt-[0.05rem]" @click="toggle"
                 :class="checked === null ? 'bg-slate-200' : checked ? 'bg-pink-600' : 'bg-blue-700'">
 
                 <input type="checkbox" v-model="checked" class="opacity-0 w-0" tabindex="-1" />
-                <span :class="checked === null ? 'translate-x-3' : checked ? 'translate-x-5' : 'translate-x-1'"
-                    class="inline-block h-3 w-3 transform rounded-full bg-white transition" />
+                <span :class="checked === null ? 'translate-x-3' : checked ? 'translate-x-[1.15rem]' : 'translate-x-[0.15rem]'"
+                    class="inline-block h-[0.95rem] w-[0.95rem] transform rounded-full bg-white transition" />
 
             </div>
 
-            <span class="inline-block first-letter:underline mx-1 select-none" @click.stop="onRightLabelClick"
+            <span class="inline-block first-letter:underline mx-1 select-none mt-1" @click.stop="onRightLabelClick"
                 :class="(checked || checked === null) ? 'opacity-100' : 'opacity-25'">{{ rightLabel }}</span>
 
         </div>

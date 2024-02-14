@@ -1,3 +1,10 @@
+<!--                                                                      -->
+<!-- Copyright (c) 2023-2024 Pure Software Ltd.  All rights reserved.     -->
+<!--                                                                      -->
+<!-- This source code is the intellectual property of Pure Software       -->
+<!-- Ltd and for information security purposes is classified as           -->
+<!-- COMPANY CONFIDENTIAL.                                                -->
+
 <script setup lang="ts">
 
 import { computed, ref } from 'vue'
@@ -22,8 +29,9 @@ const otherInput = ref<null | { focus: () => null }>(null)
 const emptyComboOption = ref<null | HTMLElement>(null)
 const standardTitles = ['Mr', 'Mrs', 'Miss', 'Ms', 'Dr.', 'Other']
 const query = ref('')
-const selectedTitle = ref<string | null>(null)
 const showDownIcon = ref(true)
+
+const selectedTitle = defineModel<string | null | undefined>()
 
 const filteredTitles = computed(() => {
   return query.value === ''
@@ -58,7 +66,6 @@ const onCrossClick = () => {
     inputControl.value.textContent = null
     query.value = ''    
   }
-  console.log('cross clicked')
   selectedTitle.value = null
   if (emptyComboOption.value) {
     emptyComboOption.value.setAttribute('disabled', 'false')

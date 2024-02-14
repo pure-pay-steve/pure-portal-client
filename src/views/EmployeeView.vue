@@ -1,29 +1,50 @@
-<script setup>
+<script setup lang="ts">
 
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
+
+import { Employee } from '../model/Employee';
+import { DateOnly } from '../lib/DateOnly'
+
 import EmployeeEditor from '../components/EmployeeEditor.vue'
 
-defineProps({
-})
+const employee = ref({}) as Ref<Employee>
 
-defineEmits([])
+employee.value = {
+    // title: 'Mrs',
+    // firstName: 'Steve',
+    // middleName: 'John',
+    // lastName: 'Wilkinson',
+    // preferredName: 'Steve',
+    // dateOfBirth: new DateOnly(1980, 1, 1),
+    // gender: 'Female'
+} as Employee
 
+console.log(employee.value)
+// defineProps({
+// })
+
+// defineEmits([])
 
 const people = ref([
-    { name: 'Steve Wilkinson' },
-    { name: 'Chris Deeson' },
-    { name: 'Harry Hawk' },
-    { name: 'Dennis Dubois' }
+    { name: 'Steve Wilkinson' }
 ])
+
+const onRead = () => {
+    console.log('Reading...')
+    console.log(employee.value)
+}
 </script>
 
 <template>
     <div class="xl:ml-48 xl:mr-96">
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-3xl font-bold my-4">
             Employees
         </h1>
         <div class="flex-col flex-1">
-            <employee-editor v-for="employee in people" :name="employee.name" class="m-1"></employee-editor>
+            <employee-editor v-model="employee" v-for="emp in people" :name="emp.name" class="m-1"></employee-editor>
+            <button @click="onRead"
+                class="justify-self-end rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Read</button>
+
         </div>
     </div>
 </template>

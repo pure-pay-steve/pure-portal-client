@@ -40,6 +40,7 @@ const onKeypressDoc = (event: any) => {
             toggle()
             break
     }
+    event.preventDefault()
 }
 
 // watch(() => model.value, (value) => {
@@ -73,12 +74,12 @@ onMounted(() => {
             class="inline-block group-focus:ml-1 mr-1 select-none my-2" @click.stop="toggle">{{ label
             }}</span>
 
-        <div class="inline-block rounded-2xl bg-blue-700 w-10 h-[1.1rem] mx-2" @click="toggle"
+        <div class="inline-block rounded-2xl bg-blue-700 w-10 h-[1.2rem] mx-2 my-1" @click="toggle"
             :class="model ? 'bg-blue-700' : 'bg-slate-300'">
 
             <input type="checkbox" v-model="model" class="opacity-0 w-0" tabindex="-1" />
             <span :class="model ? 'translate-x-5' : 'translate-x-1'"
-                class="inline-block h-3 w-3 transform rounded-full bg-white transition" />
+                class="inline-block h-[0.95rem] w-[0.95rem] transform rounded-full bg-white transition" />
 
         </div>
 

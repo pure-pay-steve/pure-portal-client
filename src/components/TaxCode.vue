@@ -24,8 +24,13 @@ const onLeftTaxCodeField = () => {
     var modelValue = model.value as string
 
     if (modelValue) {
-        isNonCumulative.value = modelValue.toUpperCase().endsWith('X')
+        isNonCumulative.value = isTaxCodeNonCumulative(modelValue)
+        model.value = isNonCumulative.value ? modelValue.toUpperCase().slice(0, -1) : modelValue.toUpperCase()
     }
+}
+
+const isTaxCodeNonCumulative = (taxCode: string) : boolean => {
+    return taxCode.toUpperCase().endsWith('X')
 }
 
 </script>

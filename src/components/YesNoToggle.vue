@@ -54,6 +54,7 @@ const onKeypressDoc = (event: any) => {
             setState(true)
             break
     }
+    event.preventDefault()
 }
 
 watch(() => checked.value, (value) => {
@@ -94,8 +95,8 @@ onMounted(() => {
                 :class="checked ? 'bg-blue-700' : 'bg-slate-600'">
 
                 <input type="checkbox" v-model="checked" class="opacity-0 w-0" tabindex="-1" />
-                <span :class="checked === null ? 'translate-x-3' : checked ? 'translate-x-5' : 'translate-x-1'"
-                    class="inline-block h-3 w-3 transform rounded-full bg-white transition" />
+                <span :class="checked === null ? 'translate-x-3' : checked ? 'translate-x-5' : 'translate-x-[0.15rem]'"
+                    class="inline-block h-[0.95rem] w-[0.95rem] transform rounded-full bg-white transition" />
 
             </div>
 
