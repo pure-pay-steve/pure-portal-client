@@ -33,7 +33,7 @@ const onLeftTaxCodeField = () => {
 <template>
     <div class="flex flex-row gap-x-4 mt-2">
         <labelled-input class="w-28" label="Tax code" case-treatment="all-upper" @leave="onLeftTaxCodeField" v-model="model"/>
-        <toggle class="mt-5" label="Non-cumulative" v-model="isNonCumulative"
+        <toggle class="mt-7" label="Non-cumulative" v-model="isNonCumulative"
             label-position="right" />
     </div>
 

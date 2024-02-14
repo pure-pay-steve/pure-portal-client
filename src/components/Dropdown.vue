@@ -20,22 +20,24 @@ const props = defineProps<{
     options: [string, string][]
 }>()
 
-defineEmits([])
-
 const focus = () => {
     if (selectControl.value)
         selectControl.value.focus()
 }
 
+const emit = defineEmits([
+    "keypress"
+])
+
 defineExpose({
   focus
 })
 
-const onKeypress = (event: any) => {
-    if (props.options.includes([event.key.toUpperCase(), event.key.toUpperCase()])) {
-        if (selectControl.value) {
-            selectControl.value.value = event.key.toUpperCase()
-        }
+const onKeypress = (event: KeyboardEvent) => {
+    const result = ref(false)
+    emit('keypress', event, selectControl, result)
+    if (result.value) {
+        event.preventDefault()
     }
 }
 

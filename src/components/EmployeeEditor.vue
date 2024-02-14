@@ -37,7 +37,7 @@ defineEmits([])
             <flex-break />
             <labelled-input label="Address" class="w-full"></labelled-input>
             <flex-break />
-            <labelled-input label="Email"></labelled-input>
+            <labelled-input size="long" label="Email"></labelled-input>
             <flex-break />
             <date-selector label="Employment start date" />
             <labelled-input label="Payroll Id" placeholder="Leave blank to auto-populate"/>

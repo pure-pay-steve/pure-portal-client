@@ -8,12 +8,26 @@ const id = ref(uuid())
 const props = defineProps({
     label: String,
     placeholder: String,
-    caseTreatment: String
+    caseTreatment: String,
+    size: String
 })
 
 const emit = defineEmits(["leave"])
 
 const model = defineModel()
+
+const getWidth = () => {
+    switch (props.size) {
+        case 'short':
+            return 'w-28'
+        case 'medium':
+            return 'w-36'
+        case 'long':
+            return 'w-72'
+        default:
+            return ''
+    }
+}
 
 const onLeaveFocus = () => {
     var modelValue = model.value as string
@@ -41,7 +55,7 @@ const onLeaveFocus = () => {
 </script>
 
 <template>
-    <div class="sm:col-span-2">
+    <div class="" :class="getWidth()">
         <label :for="id" class="block text-sm font-medium leading-3 text-inputlabel">{{ label }}</label>
         <div class="mt-2">
             <input type="text" name="first-name" :id="id" autocomplete="off" data-1p-ignore data-lp-ignore
