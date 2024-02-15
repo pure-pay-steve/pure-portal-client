@@ -9,6 +9,9 @@
 
 import { onMounted, ref } from 'vue'
 import { v4 as uuid } from 'uuid'
+//import { getAddress } from 'getaddress-autocomplete-native'
+
+import type { Address } from '../model/Address'
 
 const id = ref(uuid())
 
@@ -35,6 +38,26 @@ const getWidth = () => {
             return ''
     }
 }
+
+const toFormattedAddress = (address: Address) : string => {
+    console.log(address.postcode)
+
+    const formattedAddress = address.formatted_address
+    var result = ''
+
+    for (var i = 0; i < formattedAddress.length; i++) {
+        if (formattedAddress[i].length > 0) {
+            result += formattedAddress[i] + ', '
+        }
+    }
+    result = result.slice(0, -2)
+    result = result + ' ' + address.postcode
+
+    console.log(result)
+
+    return result
+}
+
 
 const onLeaveFocus = () => {
     var modelValue = model.value as string
@@ -67,7 +90,8 @@ onMounted(() => {
     // @ts-ignore
     getAddress.autocomplete(id.value, 'jdrOJaE6v0STy2YPrktLgw41803', { bind_output_fields: true})
     document.addEventListener("getaddress-autocomplete-address-selected", function(e: any){
-    console.log(e.address);
+        console.log(e.address as Address);
+        toFormattedAddress(e.address as Address)
 })
 })
 
