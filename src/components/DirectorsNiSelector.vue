@@ -16,8 +16,6 @@ const isDirector = ref(false)
 const directorNIMethodControl = ref<null | { focus: () => null }>(null)
 
 watch(() => isDirector.value, (value) => {
-    console.log('Director status updated', value)
-
     setTimeout(() => {
         if (directorNIMethodControl.value)
             directorNIMethodControl.value.focus()

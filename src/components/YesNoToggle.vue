@@ -58,8 +58,7 @@ const onKeypressDoc = (event: any) => {
 }
 
 watch(() => checked.value, (value) => {
-    console.log('change', value ? props.rightLabel : props.leftLabel)
-    emit('change', value)
+    emit('change', value ? props.rightLabel : props.leftLabel)
 })
 
 const onUnload = () => {

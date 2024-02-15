@@ -15,7 +15,6 @@ import YesNoToggle from './YesNoToggle.vue'
 const studentLoanTypes = [['', 'None'], ['Plan1', 'Plan 1'], ['Plan2', 'Plan 2'], ['Plan4', 'Plan 4']] as [string, string][]
 
 const onDropdownKeypress = (key: KeyboardEvent, control: Ref<HTMLSelectElement | null>, result: Ref<boolean>) => {
-    console.log('key', key)
     for (let i = 0; i < studentLoanTypes.length; i++) {
         if (studentLoanTypes[i][0].includes(key.key)) {
             if (control.value) {

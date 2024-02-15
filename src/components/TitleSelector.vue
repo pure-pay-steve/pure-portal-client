@@ -46,9 +46,7 @@ const showOther = computed(() => {
 })
 
 const onLeaveFocus = () => {
-  console.log('leaving focus')
-  console.log(selectedTitle.value)
-  console.log(inputControl.value?.textContent)
+  query.value = ''
   showDownIcon.value = selectedTitle.value == null || selectedTitle.value === ''
 }
 

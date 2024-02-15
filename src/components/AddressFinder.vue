@@ -9,11 +9,15 @@
 
 import { onMounted, ref } from 'vue'
 import { v4 as uuid } from 'uuid'
+import { PencilIcon } from '@heroicons/vue/20/solid'
 //import { getAddress } from 'getaddress-autocomplete-native'
 
 import type { Address } from '../model/Address'
 
 const id = ref(uuid())
+const hideGetAddressInput = ref(false)
+const addressValueAsText = ref('')
+const addressValue = ref<Address>()
 
 const props = defineProps({
     label: String,
@@ -22,9 +26,9 @@ const props = defineProps({
     size: String
 })
 
-const emit = defineEmits(["leave"])
+const emit = defineEmits(["resolved", "leave"])
 
-const model = defineModel()
+const model = defineModel<Address>()
 
 const getWidth = () => {
     switch (props.size) {
@@ -34,6 +38,8 @@ const getWidth = () => {
             return 'w-36'
         case 'long':
             return 'w-72'
+        case 'full':
+            return 'w-full'
         default:
             return ''
     }
@@ -58,52 +64,67 @@ const toFormattedAddress = (address: Address) : string => {
     return result
 }
 
-
 const onLeaveFocus = () => {
-    var modelValue = model.value as string
-
-    if (modelValue) {
-        switch (props.caseTreatment) {
-
-            case 'proper-name':
-                if (modelValue === modelValue.toLowerCase()) {
-                    model.value = modelValue.charAt(0).toUpperCase() + modelValue.slice(1)
-                } else if (modelValue === modelValue.toUpperCase()) {
-                    model.value = modelValue.charAt(0) + modelValue.slice(1).toLowerCase()
-                }
-                break
-
-            case 'all-upper':
-                model.value = modelValue.toUpperCase()
-                break
-        }
-    }
-    
     emit('leave')
+}
 
-    
+const getAddressSelected = (e: any) => {
+        const address = e.address as Address
+        address.addressValue = toFormattedAddress(address)
+        addressValue.value = address
+        hideGetAddressInput.value = true
+        addressValueAsText.value = address.addressValue
+        emit('resolved')
+}
+
+const onEdit = () => {
+    hideGetAddressInput.value = false
+    // using this rather then ref because getAddress seems to stop it working
+    setTimeout(() => {
+        const target = document.getElementById(`a-${id.value}`) as HTMLInputElement
+        if (target && addressValue.value) {
+            target.value = addressValue.value.addressValue
+            target.focus()
+            target.setSelectionRange(target.value.length, target.value.length)
+        }
+    }, 100)
+}
+
+const enableGetAddress = () => {
+    // @ts-ignore
+    getAddress.autocomplete(`a-${id.value}`, 'jdrOJaE6v0STy2YPrktLgw41803', { bind_output_fields: false})
+}
+
+const onUnload = () => {
+        document.removeEventListener('beforeunload', onUnload);
+        document.removeEventListener("getaddress-autocomplete-address-selected", getAddressSelected)
 }
 
 onMounted(() => {
     console.log('Address finder mounted')
 
     // @ts-ignore
-    getAddress.autocomplete(id.value, 'jdrOJaE6v0STy2YPrktLgw41803', { bind_output_fields: true})
-    document.addEventListener("getaddress-autocomplete-address-selected", function(e: any){
-        console.log(e.address as Address);
-        toFormattedAddress(e.address as Address)
-})
+    getAddress.autocomplete(`a-${id.value}`, 'jdrOJaE6v0STy2YPrktLgw41803', { bind_output_fields: false})
+
+    document.addEventListener("getaddress-autocomplete-address-selected", getAddressSelected)
+    document.addEventListener('beforeunload', onUnload)
+
+    hideGetAddressInput.value = false
 })
 
 </script>
 
 <template>
     <div class="" :class="getWidth()">
-        <label :for="id" class="block text-sm font-medium leading-3 text-inputlabel">{{ label }}</label>
-        <div class="mt-2">
-            <input type="text" name="first-name" :id="id" autocomplete="off" data-1p-ignore data-lp-ignore
-                @blur="onLeaveFocus" v-model="model" :placeholder="placeholder"
-                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+        <label :for="id" class="text-sm font-medium leading-3 text-inputlabel">{{ label }}</label>
+        <div class="mt-2 flex flex-row">
+            <input type="text" :id="`a-${id}`" autocomplete="off" data-1p-ignore data-lp-ignore :class="hideGetAddressInput ? 'hidden' : 'visible'"
+                @blur="onLeaveFocus" :placeholder="placeholder"
+                class="grow rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+            <input v-if="hideGetAddressInput" type="text" :id="`b-${id}`" autocomplete="off" data-1p-ignore data-lp-ignore
+                @blur="onLeaveFocus" v-model="addressValueAsText" :placeholder="placeholder" readonly
+                class="grow rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                <button v-if="hideGetAddressInput" class="grow-0 -ml-8 rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 w-8" @click="onEdit"><pencil-icon class="-ml-[0.5rem] h-5 w-5" aria-hidden="true" /></button>
         </div>
     </div>
 </template>

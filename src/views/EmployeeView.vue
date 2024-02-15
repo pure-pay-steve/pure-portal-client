@@ -6,6 +6,7 @@ import { Employee } from '../model/Employee';
 import { DateOnly } from '../lib/DateOnly'
 
 import EmployeeEditor from '../components/EmployeeEditor.vue'
+import FlexBreak from '../components/FlexBreak.vue';
 
 const employee = ref({}) as Ref<Employee>
 
@@ -40,10 +41,11 @@ const onRead = () => {
         <h1 className="text-3xl font-bold my-4">
             Employees
         </h1>
-        <div class="flex-col flex-1">
+        <div class="flex flex-col">
             <employee-editor v-model="employee" v-for="emp in people" :name="emp.name" class="m-1"></employee-editor>
+            <flex-break />
             <button @click="onRead"
-                class="justify-self-end rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Read</button>
+                class="grow-0 self-end rounded-md bg-indigo-500 mt-5 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Save</button>
 
         </div>
     </div>

@@ -23,7 +23,6 @@ defineProps({
 const emit = defineEmits(['update:modelValue'])
 
 watch(() => date.value, (value) => {
-    console.log('date.value', value)
     const dateOnly = DateOnly.fromIso(value as string)
     emit('update:modelValue', dateOnly)
 })

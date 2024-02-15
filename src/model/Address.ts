@@ -22,5 +22,6 @@ export type Address = {
     county: string,
     district: string,
     country: string,
-    residential: boolean
+    residential: boolean,
+    addressValue: string
   }

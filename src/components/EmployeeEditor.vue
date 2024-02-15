@@ -53,7 +53,7 @@ const onSave = () => {
             <date-selector v-model="employee.dateOfBirth" label="Date of birth"/>
             <gender-toggle v-model="employee.gender" class="ml-8" top-label="Gender" left-label="Male" right-label="Female"></gender-toggle>
             <flex-break />
-            <address-finder v-model="employee.address" label="Address" class="w-full" />
+            <address-finder v-model="employee.address" label="Address" size="full"/>
             <flex-break />
             <labelled-input size="long" label="Email"></labelled-input>
             <flex-break />
@@ -68,8 +68,8 @@ const onSave = () => {
             <flex-break />
             <student-loan-selector />
             <flex-break />
-            <button @click="onSave"
-                class="justify-self-end rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Save</button>
+            <!-- <button @click="onSave"
+                class="justify-self-end rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Save</button> -->
         </div>
     </div>
 </template>
