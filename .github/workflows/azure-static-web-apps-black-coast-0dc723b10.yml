@@ -19,6 +19,8 @@ jobs:
         with:
           submodules: true
           lfs: false
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
       - name: 'Setup: Install Dependencies'
         run: pnpm install
       - name: 'Run Build'
