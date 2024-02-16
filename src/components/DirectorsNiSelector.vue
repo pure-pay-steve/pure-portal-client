@@ -48,7 +48,7 @@ watch(() => directorNIMethod.value, (value) => {
     <div class="basis-full flex flex-row gap-1 items-center flex-wrap">
 
         <toggle v-model="isDirector" label="Employee is a director" label-position="right" class="" />
-        <dropdown v-model="directorNIMethod" class="sm:ml-8 max-sm:w-24" ref="directorNIMethodControl" label="Director's NI calculation method"
+        <dropdown v-model="directorNIMethod" class="sm:ml-8 max-sm:w-24 max-sm:basis-full" ref="directorNIMethodControl" label="Director's NI calculation method"
             label-position="left" :options="[['StandardAnnualisedEarningsMethod', 'Standard annual earnings period method'], ['AlternativeMethod','Alternative method (per pay period)']]"
             :class="isDirector ? 'opacity-100 transition-opacity ease-in-out delay-150 duration-300' : 'opacity-0 invisible h-0'" />
 
