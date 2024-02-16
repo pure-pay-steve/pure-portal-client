@@ -5,7 +5,7 @@
 // Ltd and for information security purposes is classified as     
 // COMPANY CONFIDENTIAL.                                          
 
-export type TaxCode = {
-    taxCode: string,
-    isNonCumulative: boolean
+export type StudentLoanSettings = {
+    studentLoanPlanType?: 'Plan1' | 'Plan2' | 'Plan4',
+    hasPostGraduateLoan: boolean
 }

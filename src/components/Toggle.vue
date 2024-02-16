@@ -21,7 +21,7 @@ defineProps<{
     labelPosition: 'left' | 'right'
 }>()
 
-//const emit = defineEmits(['change', ])
+const emit = defineEmits(['change'])
 
 const toggle = () => model.value = !model.value
 
@@ -43,9 +43,9 @@ const onKeypressDoc = (event: any) => {
     event.preventDefault()
 }
 
-// watch(() => model.value, (value) => {
-//     emit('change', value)
-// })
+watch(() => model.value, (value) => {
+    emit('change', value)
+})
 
 const onUnload = () => {
     if (thisControl && thisControl.value) {

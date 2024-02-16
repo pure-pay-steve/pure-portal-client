@@ -17,6 +17,7 @@ import StudentLoanSelector from './StudentLoanSelector.vue'
 import AddressFinder from './AddressFinder.vue'
 
 const title = ref('')
+const emailControl = ref<null | { focus: () => void }>(null)
 
 defineProps({
     name: String
@@ -26,16 +27,28 @@ defineEmits([])
 
 const employee = defineModel<Employee>({required: true});
 
-const onSave = () => {
-    console.log('Saving...')
+const onAddressResolved = (address: string) => {
+    console.log('Address resolved:', address)
 
-    if (employee.value) {
-        //employee.value.title = title.value
-    }
-
-    console.log(employee.value)
+    setTimeout(() => {
+        if (emailControl.value) {
+            console.log('Focusing email control')
+            emailControl.value.focus()            
+        }
+    })
 }
 
+const onDateChange = (date: string) => {
+    console.log('Date changed:', date)
+}
+
+const onTaxCodeChange = (taxCode: string) => {
+    console.log('Tax code changed:', taxCode)
+}
+
+const onNiDetailsChange = (niDetails: string) => {
+    console.log('NI details changed:', niDetails)
+}
 
 </script>
 
@@ -50,26 +63,24 @@ const onSave = () => {
             <flex-break />
             <labelled-input v-model="employee.preferredName" label="Preferred name" case-treatment="proper-name"></labelled-input>
             <flex-break />
-            <date-selector v-model="employee.dateOfBirth" label="Date of birth"/>
+            <date-selector v-model="employee.dateOfBirth" label="Date of birth" @change="onDateChange"/>
             <gender-toggle v-model="employee.gender" class="ml-8" top-label="Gender" left-label="Male" right-label="Female"></gender-toggle>
             <flex-break />
-            <address-finder v-model="employee.address" label="Address" size="full"/>
+            <address-finder v-model="employee.address" label="Address" size="full" @resolved="onAddressResolved"/>
             <flex-break />
-            <labelled-input size="long" label="Email"></labelled-input>
+            <labelled-input v-model="employee.email" size="long" label="Email" ref="emailControl"></labelled-input>
             <flex-break />
-            <date-selector label="Employment start date" />
-            <labelled-input label="Payroll Id" placeholder="Leave blank to auto-populate" />
+            <date-selector v-model="employee.employmentStartDate" label="Employment start date" />
+            <labelled-input v-model="employee.payrollId" label="Payroll Id" placeholder="Leave blank to auto-populate" />
             <flex-break />
-            <tax-code />
+            <tax-code v-model="employee.taxCode" @change="onTaxCodeChange"/>
             <flex-break />
-            <ni-details />
+            <ni-details v-model="employee.niDetails" @change="onNiDetailsChange" />
             <flex-break />
-            <directors-ni-selector class="flex-wrap" />
+            <directors-ni-selector v-model="employee.directorSettings" class="flex-wrap" />
             <flex-break />
             <student-loan-selector />
             <flex-break />
-            <!-- <button @click="onSave"
-                class="justify-self-end rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Save</button> -->
         </div>
     </div>
 </template>

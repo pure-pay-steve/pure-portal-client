@@ -74,6 +74,7 @@ const getAddressSelected = (e: any) => {
         addressValue.value = address
         hideGetAddressInput.value = true
         addressValueAsText.value = address.addressValue
+        model.value = address
         emit('resolved')
 }
 

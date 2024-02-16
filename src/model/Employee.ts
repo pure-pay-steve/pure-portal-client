@@ -8,6 +8,9 @@
 import type { DateOnly } from "../lib/DateOnly"
 import type { Address } from "./Address"
 import type { TaxCode } from "./TaxCode"
+import type { NiDetails } from "./NiDetails"
+import type { DirectorSettings } from "./DirectorSettings"
+import type { StudentLoanSettings } from "./StudentLoanSettings"
 
 export type Employee = {
     id: string,
@@ -21,12 +24,9 @@ export type Employee = {
     address?: Address,
     email: string,
     employmentStartDate?: DateOnly,
-    payrollId: string,
-    taxCode: TaxCode,
-    niNumber: string,
-    niCategory: string,
-    isDirector: boolean,
-    directorsNiCalculationMethod: 'StandardAnnualisedEarningsMethod' | 'AlternativeMethod',
-    studentLoanType?: 'Plan1' | 'Plan2' | 'Plan4',
-    hasPostGraduateLoan: boolean
+    payrollId?: string,
+    taxCode?: TaxCode,
+    niDetails?: NiDetails,
+    directorSettings: DirectorSettings,
+    studentLoanSettings: StudentLoanSettings
 }

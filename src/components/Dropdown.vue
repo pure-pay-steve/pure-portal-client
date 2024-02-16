@@ -7,11 +7,12 @@
 
 <script setup lang="ts">
 
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { v4 as uuid } from 'uuid'
 
 const id = ref(uuid())
 const selectControl = ref<null | HTMLInputElement>(null)
+const selectedValue = ref('')
 
 const props = defineProps<{
     label: string,
@@ -19,6 +20,13 @@ const props = defineProps<{
     omitSelectOptionOption?: boolean
     options: [string, string][]
 }>()
+
+const model = defineModel<string>()
+
+watch (() => selectedValue.value, (value) => {
+    model.value = value
+    console.log('Dropdown.model:', value)
+})
 
 const focus = () => {
     if (selectControl.value)
@@ -65,7 +73,7 @@ onMounted(() => {
             <label v-if="labelPosition === 'left'" :for="id" class="inline-block mr-3 mt-4 select-none ">{{ label
             }}</label>
             <div class="block mt-2">
-                <select :id="id" ref="selectControl"
+                <select v-model="selectedValue" :id="id" ref="selectControl"
                     class="rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 mt-6 sm:mt-0">
                     <option v-if="!omitSelectOptionOption" disabled selected value> -- select -- </option>
                     <option v-for="option in options"  value="option[0]">{{ option[1] }}</option>

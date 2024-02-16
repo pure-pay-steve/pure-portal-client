@@ -4,6 +4,7 @@ import { ref } from 'vue'
 import { v4 as uuid } from 'uuid'
 
 const id = ref(uuid())
+const inputControl = ref<null | { focus: () => void }>(null)
 
 const props = defineProps({
     label: String,
@@ -15,6 +16,15 @@ const props = defineProps({
 const emit = defineEmits(["leave"])
 
 const model = defineModel()
+
+const focus = () => {
+    if (inputControl.value)
+        inputControl.value.focus()
+}
+
+defineExpose({
+  focus,
+})
 
 const getWidth = () => {
     switch (props.size) {
@@ -58,7 +68,7 @@ const onLeaveFocus = () => {
     <div class="" :class="getWidth()">
         <label :for="id" class="block text-sm font-medium leading-3 text-inputlabel">{{ label }}</label>
         <div class="mt-2">
-            <input type="text" name="first-name" :id="id" autocomplete="off" data-1p-ignore data-lp-ignore
+            <input type="text" name="first-name" :id="id" autocomplete="off" ref="inputControl" data-1p-ignore data-lp-ignore
                 @blur="onLeaveFocus" v-model="model" :placeholder="placeholder"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
         </div>

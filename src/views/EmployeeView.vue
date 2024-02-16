@@ -30,21 +30,25 @@ const people = ref([
     { name: 'Steve Wilkinson' }
 ])
 
-const onRead = () => {
-    console.log('Reading...')
-    console.log(employee.value)
+const onSave = () => {
+    console.log('Saving...')
+
+    if (employee.value) {
+        console.log(JSON.stringify(employee.value))
+    }
 }
+
 </script>
 
 <template>
     <div class="xl:ml-48 xl:mr-96">
         <h1 className="text-3xl font-bold my-4">
-            Employees
+            Employee
         </h1>
         <div class="flex flex-col">
             <employee-editor v-model="employee" v-for="emp in people" :name="emp.name" class="m-1"></employee-editor>
             <flex-break />
-            <button @click="onRead"
+            <button @click="onSave"
                 class="grow-0 self-end rounded-md bg-indigo-500 mt-5 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Save</button>
 
         </div>
