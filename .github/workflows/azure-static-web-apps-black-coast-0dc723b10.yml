@@ -26,7 +26,7 @@ jobs:
       - name: 'Setup: Install Dependencies'
         run: pnpm install
       - name: 'Run Build'
-        run: 'vite build'          
+        run: 'pnpm run build'          
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
