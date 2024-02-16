@@ -6,6 +6,6 @@
 // COMPANY CONFIDENTIAL.                                          
 
 export type StudentLoanSettings = {
-    studentLoanPlanType?: 'Plan1' | 'Plan2' | 'Plan4',
+    studentLoanPlanType: 'Plan1' | 'Plan2' | 'Plan4' | null,
     hasPostGraduateLoan: boolean
 }

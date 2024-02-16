@@ -6,13 +6,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.19",
     "@heroicons/vue": "^2.1.1",
     "@tailwindcss/forms": "^0.5.7",
-    "getaddress-autocomplete-native": "^1.0.3",
     "luxon": "^3.4.4",
     "uuid": "^9.0.1",
     "vue": "^3.4.15"

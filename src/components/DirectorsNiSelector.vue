@@ -11,30 +11,46 @@ import { ref, watch } from 'vue'
 
 import Toggle from '../components/Toggle.vue'
 import Dropdown from '../components/Dropdown.vue'
+import { DirectorSettings } from '../model/DirectorSettings';
 
 const isDirector = ref(false)
-const directorNIMethodControl = ref<null | { focus: () => null }>(null)
+const directorNIMethod = ref<'StandardAnnualisedEarningsMethod' | 'AlternativeMethod' | null>(null)
+const directorNIMethodControl = ref<null | { focus: () => null, reset: () => void }>(null)
+
+const model = defineModel<DirectorSettings>()
 
 watch(() => isDirector.value, (value) => {
+    if (!value) {
+        directorNIMethod.value = null
+    }
+    model.value = {
+        isDirector: value,
+        niCalculationMethod: directorNIMethod.value 
+    }
     setTimeout(() => {
-        if (directorNIMethodControl.value)
+        if (value && directorNIMethodControl.value) {
+            directorNIMethodControl.value.reset()
             directorNIMethodControl.value.focus()
+        }
     })
 })
 
-const test = (value: boolean) => {
-    console.log('test', value)
-}
+watch(() => directorNIMethod.value, (value) => {
+    model.value = {
+        isDirector: isDirector.value,
+        niCalculationMethod: value
+    }
+})
+
 </script>
 
 <template>
-    <div class="flex flex-row gap-1">
+    <div class="basis-full flex flex-row gap-1 items-center flex-wrap">
 
-        <toggle label="Employee is a director" label-position="right" v-model="isDirector" class="self-center"
-            @update:model-value="test" />
-        <dropdown class="sm:ml-6 -mt-[0.6rem] flex-wrap" ref="directorNIMethodControl" label="Director's NI calculation method"
+        <toggle v-model="isDirector" label="Employee is a director" label-position="right" class="" />
+        <dropdown v-model="directorNIMethod" class="md:ml-8" ref="directorNIMethodControl" label="Director's NI calculation method"
             label-position="left" :options="[['StandardAnnualisedEarningsMethod', 'Standard annual earnings period method'], ['AlternativeMethod','Alternative method (per pay period)']]"
-            :class="isDirector ? 'opacity-100 transition-opacity ease-in-out delay-150 duration-300' : 'h-0 opacity-0 invisible'" />
+            :class="isDirector ? 'opacity-100 transition-opacity ease-in-out delay-150 duration-300' : 'opacity-0 invisible h-0'" />
 
         </div>
 </template>

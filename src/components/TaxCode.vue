@@ -44,14 +44,13 @@ const onLeftTaxCodeField = () => {
 }
 
 const setModel = (changed: boolean) => {
-    console.log('TaxCode.setModel:', taxCode.value, isNonCumulative.value)
     model.value = {
         taxCode: taxCode.value,
         isNonCumulative: isNonCumulative.value
     }
-    if (changed) {
-        emit('change', model.value)
-    }
+    // if (changed) {
+    //     emit('change', model.value)
+    // }
 }
 
 const isTaxCodeNonCumulative = (taxCode: string): boolean => {
@@ -74,9 +73,9 @@ const updateTaxCode = () : boolean => {
 </script>
 
 <template>
-    <div class="flex flex-row gap-x-4 mt-2">
-        <labelled-input v-model="taxCode" class="w-28" label="Tax code" case-treatment="all-upper" @leave="onLeftTaxCodeField" />
-        <toggle class="mt-7" label="Non-cumulative" v-model="isNonCumulative" label-position="right" />
+    <div class="flex flex-row gap-x-4">
+        <labelled-input v-model="taxCode" class="w-28 " label="Tax code" case-treatment="all-upper" @leave="onLeftTaxCodeField" />
+        <toggle v-model="isNonCumulative" label="Non-cumulative" label-position="right" class="self-start mt-6" />
     </div>
 </template>
 

@@ -21,7 +21,7 @@ const model = defineModel<string>()
 </script>
 
 <template>
-    <labelled-input v-model="model" class="w-48" label="NI number" case-treatment="all-upper"/>
+    <labelled-input v-model="model" class="w-48 mt-[0.45rem]" label="NI number" case-treatment="all-upper"/>
 </template>
 
 <style scoped></style>

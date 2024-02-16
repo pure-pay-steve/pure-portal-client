@@ -116,7 +116,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="" :class="getWidth()">
+    <div class="-mt-2" :class="getWidth()">
         <label :for="id" class="text-sm font-medium leading-3 text-inputlabel">{{ label }}</label>
         <div class="mt-2 flex flex-row">
             <input type="text" :id="`a-${id}`" autocomplete="off" data-1p-ignore data-lp-ignore :class="hideGetAddressInput ? 'hidden' : 'visible'"

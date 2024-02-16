@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <div class="basis-full"></div>
+    <div class="sm:basis-full h-0"></div>
 </template>
 
 <style scoped>

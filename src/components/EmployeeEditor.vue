@@ -4,7 +4,6 @@ import { ref, defineModel } from 'vue'
 
 import { Employee } from '../model/Employee'
 
-import Collapsible from '../components/Collapsible.vue'
 import LabelledInput from '../components/LabelledInput.vue'
 import FlexBreak from '../components/FlexBreak.vue'
 import TitleSelector from '../components/TitleSelector.vue'
@@ -16,7 +15,6 @@ import DirectorsNiSelector from './DirectorsNiSelector.vue'
 import StudentLoanSelector from './StudentLoanSelector.vue'
 import AddressFinder from './AddressFinder.vue'
 
-const title = ref('')
 const emailControl = ref<null | { focus: () => void }>(null)
 
 defineProps({
@@ -27,34 +25,19 @@ defineEmits([])
 
 const employee = defineModel<Employee>({required: true});
 
-const onAddressResolved = (address: string) => {
-    console.log('Address resolved:', address)
-
+const onAddressResolved = () => {
     setTimeout(() => {
         if (emailControl.value) {
-            console.log('Focusing email control')
             emailControl.value.focus()            
         }
     })
-}
-
-const onDateChange = (date: string) => {
-    console.log('Date changed:', date)
-}
-
-const onTaxCodeChange = (taxCode: string) => {
-    console.log('Tax code changed:', taxCode)
-}
-
-const onNiDetailsChange = (niDetails: string) => {
-    console.log('NI details changed:', niDetails)
 }
 
 </script>
 
 <template>
     <div class="border border-feint rounded-md">
-        <div class="flex flex-wrap gap-x-4 gap-y-2 p-4">
+        <div class="flex flex-row flex-wrap gap-x-3 gap-y-3 p-4">
             <title-selector v-model="employee.title" label="Title"></title-selector>
             <flex-break />
             <labelled-input v-model="employee.firstName" label="First name" case-treatment="proper-name"></labelled-input>
@@ -63,23 +46,21 @@ const onNiDetailsChange = (niDetails: string) => {
             <flex-break />
             <labelled-input v-model="employee.preferredName" label="Preferred name" case-treatment="proper-name"></labelled-input>
             <flex-break />
-            <date-selector v-model="employee.dateOfBirth" label="Date of birth" @change="onDateChange"/>
+            <date-selector v-model="employee.dateOfBirth" label="Date of birth" />
             <gender-toggle v-model="employee.gender" class="ml-8" top-label="Gender" left-label="Male" right-label="Female"></gender-toggle>
             <flex-break />
             <address-finder v-model="employee.address" label="Address" size="full" @resolved="onAddressResolved"/>
-            <flex-break />
             <labelled-input v-model="employee.email" size="long" label="Email" ref="emailControl"></labelled-input>
             <flex-break />
             <date-selector v-model="employee.employmentStartDate" label="Employment start date" />
             <labelled-input v-model="employee.payrollId" label="Payroll Id" placeholder="Leave blank to auto-populate" />
             <flex-break />
-            <tax-code v-model="employee.taxCode" @change="onTaxCodeChange"/>
+            <tax-code v-model="employee.taxCode"/>
             <flex-break />
-            <ni-details v-model="employee.niDetails" @change="onNiDetailsChange" />
+            <ni-details v-model="employee.niDetails"/>
             <flex-break />
-            <directors-ni-selector v-model="employee.directorSettings" class="flex-wrap" />
-            <flex-break />
-            <student-loan-selector />
+            <directors-ni-selector v-model="employee.directorSettings" />
+            <student-loan-selector v-model="employee.studentLoanSettings" />
             <flex-break />
         </div>
     </div>

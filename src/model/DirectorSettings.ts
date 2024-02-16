@@ -7,5 +7,5 @@
 
 export type DirectorSettings = {
     isDirector: boolean,
-    niCalculationMethod?: 'StandardAnnualisedEarningsMethod' | 'AlternativeMethod'
+    niCalculationMethod?: 'StandardAnnualisedEarningsMethod' | 'AlternativeMethod' | null
 }
