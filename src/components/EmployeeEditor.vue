@@ -47,7 +47,7 @@ const onAddressResolved = () => {
             <labelled-input v-model="employee.preferredName" label="Preferred name" case-treatment="proper-name"></labelled-input>
             <flex-break />
             <date-selector v-model="employee.dateOfBirth" label="Date of birth" />
-            <gender-toggle v-model="employee.gender" class="ml-8" top-label="Gender" left-label="Male" right-label="Female"></gender-toggle>
+            <gender-toggle v-model="employee.gender" class="sm:ml-8" top-label="Gender" left-label="Male" right-label="Female"></gender-toggle>
             <flex-break />
             <address-finder v-model="employee.address" label="Address" size="full" @resolved="onAddressResolved"/>
             <labelled-input v-model="employee.email" size="long" label="Email" ref="emailControl"></labelled-input>
