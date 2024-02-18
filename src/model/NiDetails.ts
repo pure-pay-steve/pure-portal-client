@@ -6,6 +6,6 @@
 // COMPANY CONFIDENTIAL.                                          
 
 export type NiDetails = {
-    niNumber: string,
-    niCategory: string
+    niNumber?: string,
+    niCategory?: string
 }

@@ -70,10 +70,10 @@ const onLeaveFocus = () => {
 
 const getAddressSelected = (e: any) => {
         const address = e.address as Address
-        address.addressValue = toFormattedAddress(address)
+        address.displayValue = toFormattedAddress(address)
         addressValue.value = address
         hideGetAddressInput.value = true
-        addressValueAsText.value = address.addressValue
+        addressValueAsText.value = address.displayValue
         model.value = address
         emit('resolved')
 }
@@ -84,7 +84,7 @@ const onEdit = () => {
     setTimeout(() => {
         const target = document.getElementById(`a-${id.value}`) as HTMLInputElement
         if (target && addressValue.value) {
-            target.value = addressValue.value.addressValue
+            target.value = addressValue.value.displayValue
             target.focus()
             target.setSelectionRange(target.value.length, target.value.length)
         }

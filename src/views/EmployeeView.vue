@@ -1,3 +1,10 @@
+<!--                                                                      -->
+<!-- Copyright (c) 2023-2024 Pure Software Ltd.  All rights reserved.     -->
+<!--                                                                      -->
+<!-- This source code is the intellectual property of Pure Software       -->
+<!-- Ltd and for information security purposes is classified as           -->
+<!-- COMPANY CONFIDENTIAL.                                                -->
+
 <script setup lang="ts">
 
 import { Ref, ref } from 'vue'
@@ -7,6 +14,7 @@ import { DateOnly } from '../lib/DateOnly'
 
 import EmployeeEditor from '../components/EmployeeEditor.vue'
 import FlexBreak from '../components/FlexBreak.vue';
+import { toEmployeeDto } from '../dto/EmployeeDto'
 
 const employee = ref({}) as Ref<Employee>
 
@@ -25,7 +33,7 @@ const onSave = () => {
     console.log('Saving...')
 
     if (employee.value) {
-        console.log(JSON.stringify(employee.value))
+        console.dir(JSON.stringify(toEmployeeDto(employee.value)), {depth: null, colors: true})
     }
 }
 

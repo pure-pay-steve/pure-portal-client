@@ -94,7 +94,7 @@ export class DateOnly {
 
     getIsoString(): string {
         return `${this.year.toLocaleString('en-GB', {
-            minimumIntegerDigits: 2,
+            minimumIntegerDigits: 4,
             useGrouping: false
         })}-${this.month.toLocaleString('en-GB', {
             minimumIntegerDigits: 2,

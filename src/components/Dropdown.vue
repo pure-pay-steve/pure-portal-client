@@ -49,7 +49,7 @@ defineExpose({
 
 const onKeypress = (event: KeyboardEvent) => {
     const result = ref({ processed: false, value: '' })
-    emit('keypress', event, selectControl, result)
+    emit('keypress', event, null, result)
     if (result.value.processed) {
         selectedValue.value = result.value.value
         event.preventDefault()
