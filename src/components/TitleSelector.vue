@@ -18,9 +18,10 @@ import {
   ComboboxOptions,
 } from '@headlessui/vue'
 
-defineProps({
-  label: String
-})
+defineProps<{
+  label: string
+  testId: string
+}>()
 
 defineEmits([])
 

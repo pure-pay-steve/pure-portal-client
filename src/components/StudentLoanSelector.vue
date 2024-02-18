@@ -20,6 +20,10 @@ const hasPostGraduateLoan = ref(false)
 
 const model = defineModel<StudentLoanSettings>()
 
+defineProps<{
+    testId: string
+}>()
+
 watch(() => studentLoanPlanType.value, (value) => {
     model.value = {
         studentLoanPlanType: value !== "" ? value : null,
@@ -36,9 +40,8 @@ watch(() => hasPostGraduateLoan.value, (value) => {
 
 // Invoked by the Dropdown component when a key is pressed
 const onDropdownKeypress = (key: KeyboardEvent, result: Ref<{ processed: boolean, value: string }>) => {
-    const targetLetter = key.key.toUpperCase()
     for (let i = 0; i < studentLoanTypes.length; i++) {
-        if (studentLoanTypes[i][0].endsWith(targetLetter)) {
+        if (studentLoanTypes[i][1].endsWith(key.key)) {
             result.value.value = studentLoanTypes[i][0]
             result.value.processed = true
             return

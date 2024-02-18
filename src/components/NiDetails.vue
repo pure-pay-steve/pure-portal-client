@@ -20,6 +20,10 @@ const emit = defineEmits(["update:modelValue"])
 
 const model = defineModel<NiDetails>()
 
+defineProps<{
+    testId: string
+}>()
+
 const niLetters = [['A', 'A'], ['B', 'B'], ['C', 'C'], ['F', 'F'], ['H', 'H'], ['I', 'I'], ['J', 'J'], ['L', 'L'], ['M', 'M'], ['S', 'S'], ['V', 'V'], ['X', 'X'], ['Z', 'Z']] as [string, string][]
 
 watch(() => niNumber.value, (value) => {

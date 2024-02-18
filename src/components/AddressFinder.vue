@@ -10,7 +10,6 @@
 import { onMounted, ref } from 'vue'
 import { v4 as uuid } from 'uuid'
 import { PencilIcon } from '@heroicons/vue/20/solid'
-//import { getAddress } from 'getaddress-autocomplete-native'
 
 import type { Address } from '../model/Address'
 
@@ -19,12 +18,11 @@ const hideGetAddressInput = ref(false)
 const addressValueAsText = ref('')
 const addressValue = ref<Address>()
 
-const props = defineProps({
-    label: String,
-    placeholder: String,
-    caseTreatment: String,
-    size: String
-})
+const props = defineProps<{
+    label: string
+    size: string
+    testId: string
+}>()
 
 const emit = defineEmits(["resolved", "leave"])
 

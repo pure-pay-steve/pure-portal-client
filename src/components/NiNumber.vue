@@ -10,9 +10,10 @@
 import { ref } from 'vue'
 import LabelledInput from './LabelledInput.vue'
 
-defineProps({
-    label: String
-})
+defineProps<{
+    label: string
+    testId: string
+}>()
 
 defineEmits([])
 

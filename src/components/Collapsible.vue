@@ -11,11 +11,11 @@ import { onMounted, ref } from 'vue'
 import { Disclosure, DisclosureButton, DisclosurePanel, Switch } from '@headlessui/vue'
 import { ChevronUpIcon } from '@heroicons/vue/20/solid'
 
-
-defineProps({
-    header: String,
-    defaultOpen: Boolean
-})
+defineProps<{
+    header: string
+    defaultOpen: boolean
+    testId: string
+}>()
 
 defineEmits([])
 

@@ -13,12 +13,13 @@ import { v4 as uuid } from 'uuid'
 const id = ref(uuid())
 const inputControl = ref<null | { focus: () => void }>(null)
 
-const props = defineProps({
-    label: String,
-    placeholder: String,
-    caseTreatment: String,
-    size: String
-})
+const props = defineProps<{
+    label: string
+    placeholder?: string
+    caseTreatment?: string
+    size?: string
+    testId: string
+}>()
 
 const emit = defineEmits(["leave"])
 

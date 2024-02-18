@@ -20,6 +20,10 @@ const emit = defineEmits(["change"])
 
 const model = defineModel<TaxCode>()
 
+defineProps<{
+    testId: string
+}>()
+
 watch (() => taxCode.value, (value) => {
     if (isTaxCodeNonCumulative(value)) {
         isNonCumulative.value = true

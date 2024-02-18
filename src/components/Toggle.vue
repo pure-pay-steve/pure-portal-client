@@ -19,6 +19,7 @@ const model = defineModel()
 defineProps<{
     label: string,
     labelPosition: 'left' | 'right'
+    testId: string
 }>()
 
 const emit = defineEmits(['change'])

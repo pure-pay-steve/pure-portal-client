@@ -17,10 +17,11 @@ const checked = ref<null | boolean>(null)
 const focusClasses = ref("border-2 border-transparent")
 
 const props = defineProps<{
-    modelValue: 'Male' | 'Female' | null | undefined,
-    topLabel: string,
-    leftLabel: string,
+    modelValue: 'Male' | 'Female' | null | undefined
+    topLabel: string
+    leftLabel: string
     rightLabel: string
+    testId: string
 }>()
 
 const emit = defineEmits(['update:modelValue'])

@@ -9,8 +9,9 @@
 
 import { ref } from 'vue'
 
-defineProps({
-})
+defineProps<{
+
+}>()
 
 defineEmits([])
 

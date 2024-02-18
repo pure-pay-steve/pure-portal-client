@@ -15,23 +15,24 @@ import { DateOnly } from '../lib/DateOnly';
 const id = ref(uuid())
 const date = ref<string | null>(null)
 
-defineProps({
-    modelValue: DateOnly,
-    label: String
-})
+defineProps<{
+    label: string
+    testId: string
+}>()
 
-const emit = defineEmits(["update:modelValue", "change"])
+const model = defineModel<DateOnly | null>()
+
+//const emit = defineEmits(["update:modelValue", "change"])
 
 watch(() => date.value, (value) => {
-    const dateOnly = DateOnly.fromIso(value as string)
-    emit('update:modelValue', dateOnly)
+    model.value = DateOnly.fromIso(value as string)
 })
 
-const onChange = (event: Event) => {
-    const target = event.target as HTMLInputElement
-    console.log('DateSelector.onChange:', target.value)
-    emit("change", target.value)
-}
+// const onChange = (event: Event) => {
+//     const target = event.target as HTMLInputElement
+//     console.log('DateSelector.onChange:', target.value)
+//     emit("change", target.value)
+// }
 
 </script>
 

@@ -16,9 +16,10 @@ const checked = ref(false)
 const focusClasses = ref("border-transparent")
 
 const props = defineProps<{
-    topLabel: string,
-    leftLabel: string,
+    topLabel: string
+    leftLabel: string
     rightLabel: string
+    testId: string
 }>()
 
 const emit = defineEmits(["update:modelValue"])

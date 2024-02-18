@@ -44,30 +44,30 @@ const onAddressResolved = () => {
 
 <template>
     <div class="border border-feint rounded-md">
-        <div class="flex flex-row flex-wrap gap-x-3 gap-y-3 p-4">
-            <title-selector v-model="employee.title" label="Title"></title-selector>
+        <div class="flex flex-row flex-wrap gap-x-3 gap-y-4 p-4">
+            <title-selector v-model="employee.title" label="Title" test-id="title"></title-selector>
             <flex-break />
-            <labelled-input v-model="employee.firstName" label="First name" case-treatment="proper-name"></labelled-input>
-            <labelled-input v-model="employee.middleNames" label="Middle name(s)" case-treatment="proper-name"></labelled-input>
-            <labelled-input v-model="employee.lastName" label="Surname" class="flex-grow" case-treatment="proper-name"></labelled-input>
+            <labelled-input v-model="employee.firstName" label="First name" case-treatment="proper-name"  test-id="first-name" />
+            <labelled-input v-model="employee.middleNames" label="Middle name(s)" case-treatment="proper-name" test-id="middle-names" />
+            <labelled-input v-model="employee.lastName" label="Surname" class="flex-grow" case-treatment="proper-name" test-id="last-name" />
             <flex-break />
-            <labelled-input v-model="employee.preferredName" label="Preferred name" case-treatment="proper-name"></labelled-input>
+            <labelled-input v-model="employee.preferredName" label="Preferred name" case-treatment="proper-name" test-id="preferred-name" />
             <flex-break />
-            <date-selector v-model="employee.dateOfBirth" label="Date of birth" />
-            <gender-toggle v-model="employee.gender" class="sm:ml-8" top-label="Gender" left-label="Male" right-label="Female"></gender-toggle>
+            <date-selector v-model="employee.dateOfBirth" label="Date of birth" test-id="date-of-birth" />
+            <gender-toggle v-model="employee.gender" class="sm:ml-8" top-label="Gender" left-label="Male" right-label="Female" test-id="gender" />
             <flex-break />
-            <address-finder v-model="employee.address" label="Address" size="full" @resolved="onAddressResolved"/>
-            <labelled-input v-model="employee.emailAddress" size="long" label="Email" ref="emailControl"></labelled-input>
+            <address-finder v-model="employee.address" label="Address" size="full" @resolved="onAddressResolved" test-id="address" />
+            <labelled-input v-model="employee.emailAddress" size="long" label="Email" ref="emailControl" test-id="email" />
             <flex-break />
-            <date-selector v-model="employee.employmentStartDate" label="Employment start date" />
-            <labelled-input v-model="employee.payrollId" label="Payroll Id" placeholder="Leave blank to auto-populate" />
+            <date-selector v-model="employee.employmentStartDate" label="Employment start date"  test-id="start-date"/>
+            <labelled-input v-model="employee.payrollId" label="Payroll Id" placeholder="Leave blank to auto-populate"  test-id="payroll-id"/>
             <flex-break />
-            <tax-code v-model="employee.taxCode"/>
+            <tax-code v-model="employee.taxCode" test-id="tax-code"/>
             <flex-break />
-            <ni-details v-model="employee.niDetails"/>
+            <ni-details v-model="employee.niDetails" test-id="ni-details" />
             <flex-break />
-            <directors-ni-selector v-model="employee.directorSettings" />
-            <student-loan-selector v-model="employee.studentLoanSettings" />
+            <directors-ni-selector v-model="employee.directorSettings" test-id="directors-ni" />
+            <student-loan-selector v-model="employee.studentLoanSettings" test-id="student-loan" />
             <flex-break />
         </div>
     </div>
