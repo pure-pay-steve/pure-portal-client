@@ -9,6 +9,7 @@
 
 import { ref } from 'vue'
 import { v4 as uuid } from 'uuid'
+import { toLowerCase, toProperCase, toUpperCase } from '../lib/String'
 
 const id = ref(uuid())
 const inputControl = ref<null | { focus: () => void }>(null)
@@ -54,10 +55,10 @@ const onLeaveFocus = () => {
         switch (props.caseTreatment) {
 
             case 'proper-name':
-                if (modelValue === modelValue.toLowerCase()) {
-                    model.value = modelValue.charAt(0).toUpperCase() + modelValue.slice(1)
-                } else if (modelValue === modelValue.toUpperCase()) {
-                    model.value = modelValue.charAt(0) + modelValue.slice(1).toLowerCase()
+                if (modelValue === toLowerCase(modelValue)) {
+                    model.value = toProperCase(modelValue)
+                } else if (modelValue === toUpperCase(modelValue)) {
+                    model.value = toProperCase(toLowerCase(modelValue))
                 }
                 break
 
@@ -77,7 +78,7 @@ const onLeaveFocus = () => {
         <label :for="id" class="block text-sm font-medium leading-3 text-inputlabel">{{ label }}</label>
         <div class="mt-2">
             <input type="text" name="first-name" :id="id" autocomplete="off" ref="inputControl" data-1p-ignore data-lp-ignore
-                @blur="onLeaveFocus" v-model="model" :placeholder="placeholder"
+                @blur="onLeaveFocus" v-model="model" :placeholder="placeholder" :data-test-id="testId"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
         </div>
     </div>
