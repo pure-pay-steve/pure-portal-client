@@ -92,7 +92,7 @@ export function toEmployeeDto(employee: Employee): EmployeeDto {
             studentLoanType: undefined,
             hasPostGradLoan: false 
         },
-        isDirector: employee.directorSettings.isDirector,
-        directorsNiCalculationMethod: employee.directorSettings.niCalculationMethod ?? undefined
+        isDirector: employee.directorSettings ? employee.directorSettings.isDirector : false,
+        directorsNiCalculationMethod: employee.directorSettings?.niCalculationMethod ?? undefined
     };
 }

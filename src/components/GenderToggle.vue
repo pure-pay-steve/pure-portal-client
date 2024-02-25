@@ -17,18 +17,20 @@ const checked = ref<null | boolean>(null)
 const focusClasses = ref("border-2 border-transparent")
 
 const props = defineProps<{
-    modelValue: 'Male' | 'Female' | null | undefined
     topLabel: string
     leftLabel: string
     rightLabel: string
     testId: string
 }>()
 
-const emit = defineEmits(['update:modelValue'])
+const model = defineModel<'Male' | 'Female' | null | undefined>()
+
+const getState = () => model.value
+
+defineExpose(getState)
 
 watch(() => checked.value, (value) => {
-    const gender = value === null ? null : value ? 'Female' : 'Male'
-    emit('update:modelValue', gender)
+    model.value = value === null ? null : value ? 'Female' : 'Male'
 })
 
 const toggle = () => checked.value = !checked.value
@@ -103,7 +105,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div ref="thisControl" class="group flex flex-col outline-none my-2" tabIndex="0">
+    <div ref="thisControl" class="group flex flex-col outline-none my-2" tabIndex="0" :data-testid="testId">
 
         <label :for="id" class="pr-4 text-inputlabel text-sm font-medium leading-3 text-center mb-1">{{ topLabel }}</label>
 

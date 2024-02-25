@@ -5,14 +5,22 @@
 <!-- Ltd and for information security purposes is classified as           -->
 <!-- COMPANY CONFIDENTIAL.                                                -->
 
-<script setup>
+<script setup lang="ts">
 
 import { ref } from 'vue'
 
 import EmployeeView from './views/EmployeeView.vue'
+import { Http } from './lib/Http'
 
 const enabled = ref(false)
 
+const onSave = (employee: any) => {
+  console.log('Saving...')
+  console.dir(employee, {depth: null, colors: true})
+
+  const http = new Http("localhost", "api")
+  http.post("employee", employee)
+}
 </script>
 
 <!--
@@ -70,7 +78,7 @@ const enabled = ref(false)
   ```
 -->
 <template>
-    <employee-view></employee-view>
+    <employee-view @save="onSave"></employee-view>
   <!-- <form class="md:ml-64 mt-8 md:mr-24 m-8">
     <div class="space-y-2 bg-bkg">
       <div class="border-b border-gray-900/10 pb-12">

@@ -18,23 +18,15 @@ import { toEmployeeDto } from '../dto/EmployeeDto'
 
 const employee = ref({}) as Ref<Employee>
 
-employee.value = {
-    niDetails: { niNumber: '', niCategory: '' },
-    studentLoanSettings: {},
-    directorSettings: {}
-} as Employee
-
-
-const people = ref([
-    { name: 'Steve Wilkinson' }
-])
+const emit = defineEmits(["save"])
 
 const onSave = () => {
-    console.log('Saving...')
+    emit("save", toEmployeeDto(employee.value))
+    // console.log('Saving...')
 
-    if (employee.value) {
-        console.dir(JSON.stringify(toEmployeeDto(employee.value)), {depth: null, colors: true})
-    }
+    // if (employee.value) {
+    //     console.dir(JSON.stringify(toEmployeeDto(employee.value)), {depth: null, colors: true})
+    // }
 }
 
 </script>
@@ -45,9 +37,9 @@ const onSave = () => {
             Employee
         </h1>
         <div class="flex flex-col">
-            <employee-editor v-model="employee" v-for="emp in people" :name="emp.name" class="m-1"></employee-editor>
+            <employee-editor v-model="employee" v-for="emp in [{ name: 'Steve'}]" :name="emp.name" class="m-1"></employee-editor>
             <flex-break />
-            <button @click="onSave"
+            <button @click="onSave" data-testid='submit'
                 class="grow-0 self-end rounded-md bg-indigo-500 mt-5 px-3.5 py-2.5 mr-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Save</button>
 
         </div>
