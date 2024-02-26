@@ -12,18 +12,16 @@ import { CheckIcon, ChevronDownIcon, XCircleIcon } from '@heroicons/vue/20/solid
 import {
   Combobox,
   ComboboxButton,
-  ComboboxInput,
+  ComboboxInput, 
   ComboboxLabel,
   ComboboxOption,
   ComboboxOptions,
 } from '@headlessui/vue'
 
-defineProps<{
+const props = defineProps<{
   label: string
   testId: string
 }>()
-
-defineEmits([])
 
 const inputControl = ref<null | HTMLElement>(null)
 const otherInput = ref<null | { focus: () => null }>(null)
@@ -31,8 +29,9 @@ const emptyComboOption = ref<null | HTMLElement>(null)
 const standardTitles = ['Mr', 'Mrs', 'Miss', 'Ms', 'Dr.', 'Other']
 const query = ref('')
 const showDownIcon = ref(true)
+const selectedTitle = ref<string | null | undefined>()
 
-const selectedTitle = defineModel<string | null | undefined>()
+const model = defineModel<string | null | undefined>()
 
 const filteredTitles = computed(() => {
   return query.value === ''
@@ -57,6 +56,8 @@ const onUpdated = (value: string) => {
       if (otherInput.value)
         otherInput.value.focus()
     }, 0)
+  } else {
+    model.value = value
   }
 }
 
@@ -74,6 +75,14 @@ const onCrossClick = () => {
       if (inputControl.value)
         (inputControl.value as any).el.focus()
     }, 0)
+}
+
+const onOtherInputChange = (e: any) => {
+  if (e.target.value === '') {
+    model.value = null
+  } else {
+    model.value = e.target.value
+  }
 }
 
 </script>
@@ -109,7 +118,7 @@ const onCrossClick = () => {
         </combobox-options>
       </div>
     </combobox>
-    <input v-if="showOther" type="text" ref="otherInput"
+    <input v-if="showOther" type="text" ref="otherInput" role="input" :data-testid="testId" @change="onOtherInputChange"
       class="h-8 mb-[2px] w-44 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
       placeholder="e.g., Lady, Sir, Rt Hon." />
   </div>

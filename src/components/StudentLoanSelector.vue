@@ -54,8 +54,8 @@ const onDropdownKeypress = (key: KeyboardEvent, result: Ref<{ processed: boolean
 <template>
     <div class="flex flex-row gap-x-6 items-start">
         <dropdown v-model="studentLoanPlanType" label="Student loan type" label-position="top" omit-select-option-option
-            :options="studentLoanTypes" @keypress="onDropdownKeypress" />
-        <yes-no-toggle v-model="hasPostGraduateLoan" top-label="Postgraduate loan" left-label="No" right-label="Yes" />
+            :options="studentLoanTypes" @keypress="onDropdownKeypress" :test-id="testId" />
+        <yes-no-toggle v-model="hasPostGraduateLoan" top-label="Postgraduate loan" left-label="No" right-label="Yes" :test-id="testId" />
     </div>
 </template>
 

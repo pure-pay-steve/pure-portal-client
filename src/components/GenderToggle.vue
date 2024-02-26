@@ -25,10 +25,6 @@ const props = defineProps<{
 
 const model = defineModel<'Male' | 'Female' | null | undefined>()
 
-const getState = () => model.value
-
-defineExpose(getState)
-
 watch(() => checked.value, (value) => {
     model.value = value === null ? null : value ? 'Female' : 'Male'
 })

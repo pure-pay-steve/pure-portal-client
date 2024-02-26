@@ -56,8 +56,8 @@ const onDropdownKeypress = (key: KeyboardEvent, result: Ref<{ processed: boolean
 
 <template>
     <div class="flex flex-row gap-x-4">
-        <ni-number v-model="niNumber" class="" label="National Insurance number" />
-        <dropdown v-model="niCategory" class="" label="NI category letter" label-position="top" :options="niLetters"
+        <ni-number v-model="niNumber" class="" label="National Insurance number" :test-id="testId"/>
+        <dropdown v-model="niCategory" class="" label="NI category letter" label-position="top" :options="niLetters" :test-id="testId"
             @keypress="onDropdownKeypress" />
     </div>
 </template>

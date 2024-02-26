@@ -95,7 +95,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div ref="thisControl" class="group flex flex-col outline-none" tabIndex="0">
+    <div ref="thisControl" class="group flex flex-col outline-none" tabIndex="0" :data-testid="testId">
 
         <label :for="id" class="text-inputlabel text-sm font-medium leading-6 ">{{ topLabel }}</label>
 
@@ -107,7 +107,7 @@ onMounted(() => {
             <div class="rounded-2xl bg-blue-700 w-10 h-[1.2rem] mx-2" @click="toggle"
                 :class="checked ? 'bg-blue-700' : 'bg-slate-600'">
 
-                <input type="checkbox" v-model="checked" class="opacity-0 w-0" tabindex="-1" />
+                <input type="checkbox" v-model="checked" class="opacity-0 w-0" tabindex="-1" :data-testid="testId" />
                 <span :class="checked === null ? 'translate-x-3' : checked ? 'translate-x-5' : 'translate-x-[0.15rem]'"
                     class="inline-block h-[0.95rem] w-[0.95rem] transform rounded-full bg-white transition -translate-y-[0.075rem]" />
 

@@ -1,10 +1,17 @@
+//
+// Copyright (c) 2023-2024 Pure Software Ltd.  All rights reserved.    
+//                                                               
+// This source code is the intellectual property of Pure Software 
+// Ltd and for information security purposes is classified as     
+// COMPANY CONFIDENTIAL.   
+
 import { test, expect, Page, Locator } from "@playwright/test"
 import { EmployeeDto } from "../../src/dto/EmployeeDto"
-import exp from "constants"
 
 const testAddressPartial = "3 osborne road, brentwood"
 const testAddressSelection = "3 Osborne Road, Pilgrims Hatch, Brentwood, Essex"
 const testAddressResult = "3 Osborne Road, Pilgrims Hatch, Brentwood, Essex CM15 9LE"
+const testAddressResultPostcode = "CM15 9LE"
 const testEmailAddress = "MaryHad.A@LittleLamb.Com"
 const testEmailAddressResult = "maryhad.a@littlelamb.com"
 
@@ -16,7 +23,7 @@ test("My first test", async ({ page }) => {
 
         const employeeDto = request.postDataJSON() as EmployeeDto
 
-        expect(employeeDto.title).toBe("Miss")
+        expect(employeeDto.title).toBe("Prof.")
         expect(employeeDto.firstName).toBe("Suzanne")
         expect(employeeDto.middleNames).toBe("Sally Šasa")
         expect(employeeDto.lastName).toBe("van der Merve")
@@ -24,22 +31,38 @@ test("My first test", async ({ page }) => {
         expect(employeeDto.dateOfBirth).toBe("1986-03-17")
         expect(employeeDto.gender).toBe("Female")
         expect(employeeDto.address?.displayValue).toBe(testAddressResult)
+        expect(employeeDto.address?.postcode).toBe(testAddressResultPostcode)
         expect(employeeDto.emailAddress).toBe(testEmailAddressResult)
         expect(employeeDto.employmentStartDate).toBe("2024-06-21")
         expect(employeeDto.payrollId).toBe("Emp12321")
         expect(employeeDto.taxCode).toBe("1234L")
         expect(employeeDto.taxCodeIsNonCumulative).toBe(true)
+        expect(employeeDto.niNumber).toBe("NA9876543P")
+        expect(employeeDto.niCategory).toBe("M")
+        expect(employeeDto.isDirector).toBe(true)
+        expect(employeeDto.directorsNiCalculationMethod).toBe("AlternativeMethod")
+        expect(employeeDto.studentLoanInfo?.studentLoanType).toBe("Plan4")
+        expect(employeeDto.studentLoanInfo?.hasPostGradLoan).toBe(true)
+
+        console.log("All fields on EmployeeDto matched expected values")
 
         route.fulfill({ status: 200 })
     })
 
-    // Title
-    const title = page.getByTestId("title")
+    // Title.  NB testId is shared so can't use getByTestId
+    const titleSelectInput = page.locator(getSelector("input[type='text'][role='combobox']", "title"))
+    expect(titleSelectInput).not.toBe(undefined)
+    await titleSelectInput.pressSequentially("other")
+    titleSelectInput.press("Tab")
 
-    await title.pressSequentially("miss")
-    await title.press("Tab")
+    const otherTitleInput = page.locator(getSelector("input[type='text'][role='input']", "title"))
+    expect(otherTitleInput).not.toBe(undefined)
+    await otherTitleInput.pressSequentially("Prof.")
+    await otherTitleInput.press("Tab")
 
-    expect(await title.inputValue()).toBe("Miss")
+    expect(await titleSelectInput.inputValue()).toBe("Other")
+    expect(await otherTitleInput.inputValue()).toBe("Prof.")
+
 
     // First name
     const firstName = page.getByTestId("first-name")
@@ -151,13 +174,60 @@ test("My first test", async ({ page }) => {
 
     expect(await taxCodeInput.inputValue()).toBe("1234L")
     expect(await taxCodeCheckbox.isChecked()).toBe(true)
+    await taxCodeCheckbox.press("Tab")
 
-    // National insurance details
+    // National insurance details.  NB testId is shared so can't use getByTestId
+    const niNumber = page.locator(getSelector("input[type='text']", "ni-details"))
+    const niCategory = page.locator(getSelector("select", "ni-details"))
+    expect(niNumber).not.toBe(undefined)
+    expect(niCategory).not.toBe(undefined)
+    expect(niNumber).toBeFocused()
 
-    // Director status
+    await niNumber.pressSequentially("Na9876543p")
+    await niNumber.press("Tab")
+    expect(niCategory).toBeFocused()
+    await niCategory.press("M")
+    await niCategory.press("Tab")
 
-    // Student loan information
+    expect(await niNumber.inputValue()).toBe("NA9876543P")
+    expect(await niCategory.inputValue()).toBe("M")
 
+    // Director status.  NB testId is shared so can't use getByTestId
+    const isDirectorForNiDiv = page.locator(getSelector("div", "directors-ni"))
+    const isDirectorForNi = page.locator(getSelector("input[type='checkbox']", "directors-ni"))
+    const directorsNiMethodSelect = page.locator(getSelector("select", "directors-ni"))
+    expect(isDirectorForNiDiv).not.toBe(undefined)
+    expect(isDirectorForNi).not.toBe(undefined)
+    expect(directorsNiMethodSelect).not.toBe(undefined)
+    expect(isDirectorForNiDiv).toBeFocused()
+
+    await isDirectorForNiDiv.press("Space")
+
+    expect(directorsNiMethodSelect).toBeFocused()
+    await directorsNiMethodSelect.press("A")
+    await directorsNiMethodSelect.press("Tab")
+
+    expect(await isDirectorForNi.isChecked()).toBe(true)
+    expect(await directorsNiMethodSelect.inputValue()).toBe("AlternativeMethod")
+
+    // Student loan information.  NB testId is shared so can't use getByTestId
+    const studentLoanSelect = page.locator(getSelector("select", "student-loan"))
+    const postGradLoanDiv = page.locator(getSelector("div", "student-loan"))
+    const hasPostGradLoan = page.locator(getSelector("input[type='checkbox']", "student-loan"))
+    expect(studentLoanSelect).not.toBe(undefined)
+    expect(postGradLoanDiv).not.toBe(undefined)
+    expect(hasPostGradLoan).not.toBe(undefined)
+    expect(studentLoanSelect).toBeFocused()
+
+    await studentLoanSelect.press("4")
+    await studentLoanSelect.press("Tab")
+    expect(postGradLoanDiv).toBeFocused()
+
+    await postGradLoanDiv.press("Y")
+    
+    expect(await studentLoanSelect.inputValue()).toBe("Plan4")
+    expect(await hasPostGradLoan.isChecked()).toBe(true)
+    
     await page.click(getSelector("button", "submit"))
 })
 

@@ -84,7 +84,7 @@ onMounted(() => {
             <label v-if="labelPosition === 'left'" :for="id" class="mr-3 mt-3 select-none text-sm">{{ label
             }}</label>
             <div class="block mt-1">
-                <select v-model="selectedValue" :id="id" ref="selectControl"
+                <select v-model="selectedValue" :id="id" ref="selectControl" :data-testid="testId"
                     class="rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 max-sm:max-w-56"
                     :class="selectTopAdjustment ? 'max-sm:mt-3' : ''">
                     <option v-if="!omitSelectOptionOption" disabled selected value>-- select --</option>
