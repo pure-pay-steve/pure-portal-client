@@ -22,6 +22,7 @@ const props = defineProps<{
     label: string
     size: string
     testId: string
+    placeholder: string
 }>()
 
 const emit = defineEmits(["resolved", "leave"])
@@ -121,7 +122,7 @@ onMounted(() => {
                 @blur="onLeaveFocus" :placeholder="placeholder" :data-testid="testId"
                 class="grow rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
             <input v-if="hideGetAddressInput" type="text" :id="`b-${id}`" autocomplete="off" data-1p-ignore data-lp-ignore
-                @blur="onLeaveFocus" v-model="addressValueAsText" :placeholder="placeholder" readonly
+                @blur="onLeaveFocus" v-model="addressValueAsText" readonly
                 class="grow rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                 <button v-if="hideGetAddressInput" class="grow-0 -ml-8 rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 w-8" @click="onEdit"><pencil-icon class="-ml-[0.5rem] h-5 w-5" aria-hidden="true" /></button>
         </div>

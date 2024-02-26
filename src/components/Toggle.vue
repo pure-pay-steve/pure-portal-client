@@ -81,7 +81,7 @@ onMounted(() => {
 </script>
 
 <template> 
-    <div ref="thisControl" class="flex flex-row items-center border-2 p-0.5" tabIndex="0" :class="focusClasses">
+    <div ref="thisControl" class="flex flex-row items-center border-2 p-0.5" tabIndex="0" :class="focusClasses" :data-testid="testId">
 
         <span v-if="labelPosition === 'left'" :for="id"
             class="mr-1 select-none text-sm " @click.stop="toggle">{{ label
@@ -90,7 +90,7 @@ onMounted(() => {
         <div class="rounded-2xl bg-blue-700 w-10 h-[1.2rem]" @click="toggle"
             :class="model ? 'bg-blue-700' : 'bg-slate-300'">
 
-            <input type="checkbox" v-model="model" class="opacity-0 w-0" tabindex="-1" />
+            <input type="checkbox" v-model="model" class="opacity-0 w-0" tabindex="-1" :data-testid="testId" />
             <span :class="model ? 'translate-x-[1.25rem]' : 'translate-x-[0.1rem]'"
                 class="inline-block h-[0.95rem] w-[0.95rem] transform rounded-full bg-white transition -translate-y-[0.065rem]" />
 

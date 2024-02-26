@@ -49,21 +49,25 @@ const getWidth = () => {
 }
 
 const onLeaveFocus = () => {
-    var modelValue = model.value as string
+    var value = model.value as string
 
-    if (modelValue) {
+    if (value) {
         switch (props.caseTreatment) {
 
             case 'proper-name':
-                if (modelValue === toLowerCase(modelValue)) {
-                    model.value = toProperCase(modelValue)
-                } else if (modelValue === toUpperCase(modelValue)) {
-                    model.value = toProperCase(toLowerCase(modelValue))
+                if (value === toLowerCase(value)) {
+                    model.value = toProperCase(value)
+                } else if (value === toUpperCase(value)) {
+                    model.value = toProperCase(toLowerCase(value))
                 }
                 break
 
             case 'all-upper':
-                model.value = modelValue.toUpperCase()
+                model.value = toUpperCase(value)
+                break
+
+            case 'all-lower':
+                model.value = toLowerCase(value)
                 break
         }
     }

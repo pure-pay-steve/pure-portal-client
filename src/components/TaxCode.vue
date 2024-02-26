@@ -78,8 +78,8 @@ const updateTaxCode = () : boolean => {
 
 <template>
     <div class="flex flex-row gap-x-4">
-        <labelled-input v-model="taxCode" class="w-28 " label="Tax code" case-treatment="all-upper" @leave="onLeftTaxCodeField" />
-        <toggle v-model="isNonCumulative" label="Non-cumulative" label-position="right" class="self-start mt-6" />
+        <labelled-input v-model="taxCode" class="w-28 " label="Tax code" case-treatment="all-upper" @leave="onLeftTaxCodeField" :test-id="testId" />
+        <toggle v-model="isNonCumulative" label="Non-cumulative" label-position="right" class="self-start mt-6" :test-id="testId"/>
     </div>
 </template>
 

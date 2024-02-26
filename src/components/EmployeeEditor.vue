@@ -56,8 +56,9 @@ const onAddressResolved = () => {
             <date-selector v-model="employee.dateOfBirth" label="Date of birth" test-id="date-of-birth" />
             <gender-toggle v-model="employee.gender" class="sm:ml-8" top-label="Gender" left-label="Male" right-label="Female" test-id="gender" />
             <flex-break />
-            <address-finder v-model="employee.address" label="Address" size="full" @resolved="onAddressResolved" test-id="address" />
-            <labelled-input v-model="employee.emailAddress" size="long" label="Email" ref="emailControl" test-id="email" />
+            <address-finder v-model="employee.address" label="Address" size="full" @resolved="onAddressResolved" test-id="address" 
+                placeholder="Start typing address..."/>
+            <labelled-input v-model="employee.emailAddress" size="long" label="Email" ref="emailControl" test-id="email" case-treatment="all-lower"/>
             <flex-break />
             <date-selector v-model="employee.employmentStartDate" label="Employment start date"  test-id="start-date"/>
             <labelled-input v-model="employee.payrollId" label="Payroll Id" placeholder="Leave blank to auto-populate"  test-id="payroll-id"/>
