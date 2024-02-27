@@ -78,7 +78,7 @@ onMounted(() => {
 
 <template>
     <div class="flex-col">
-        <label v-if="labelPosition === 'top'" :for="id" class="text-inputlabel text-sm font-medium leading-3">{{ label
+        <label v-if="labelPosition === 'top'" :for="id" class="block text-inputlabel text-sm font-medium leading-3 mb-1">{{ label
         }}</label>
         <div class="flex flex-row">
             <label v-if="labelPosition === 'left'" :for="id" class="mr-3 mt-3 select-none text-sm">{{ label

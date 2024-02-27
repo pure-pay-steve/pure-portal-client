@@ -11,7 +11,7 @@ import { onMounted, ref } from 'vue'
 import { v4 as uuid } from 'uuid'
 import { PencilIcon } from '@heroicons/vue/20/solid'
 
-import type { Address } from '../model/Address'
+import type { Address } from '../../model/Address'
 
 const id = ref(uuid())
 const hideGetAddressInput = ref(false)

@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 
-import LabelledInput from './LabelledInput.vue'
+import LabelledInput from '../common/LabelledInput.vue'
 
 defineProps<{
     label: string
@@ -21,7 +21,7 @@ const model = defineModel<string>()
 </script>
 
 <template>
-    <labelled-input v-model="model" class="w-48 mt-[0.45rem]" label="NI number" case-treatment="all-upper" :test-id="testId"/>
+    <labelled-input v-model="model" class="w-48" label="NI number" case-treatment="all-upper" :test-id="testId"/>
 </template>
 
 <style scoped></style>

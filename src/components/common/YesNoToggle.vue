@@ -95,9 +95,9 @@ onMounted(() => {
 </script>
 
 <template>
-    <div ref="thisControl" class="group flex flex-col outline-none" tabIndex="0" :data-testid="testId">
+    <div ref="thisControl" class="group flex flex-col items-center outline-none" tabIndex="0" :data-testid="testId">
 
-        <label :for="id" class="text-inputlabel text-sm font-medium leading-6 ">{{ topLabel }}</label>
+        <label :for="id" class="text-inputlabel text-sm font-medium leading-6">{{ topLabel }}</label>
 
         <div class="flex flex-row border-2 items-center px-1" :class="focusClasses">
 

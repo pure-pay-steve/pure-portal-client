@@ -9,9 +9,9 @@
 
 import { Ref, ref, watch } from 'vue'
 
-import Dropdown from './Dropdown.vue'
-import YesNoToggle from './YesNoToggle.vue'
-import { StudentLoanSettings } from '../model/StudentLoanSettings'
+import Dropdown from '../common/Dropdown.vue'
+import YesNoToggle from '../common/YesNoToggle.vue'
+import { StudentLoanSettings } from '../../model/StudentLoanSettings'
 
 const studentLoanTypes = [['', 'None'], ['Plan1', 'Plan 1'], ['Plan2', 'Plan 2'], ['Plan4', 'Plan 4']] as [string, string][]
 

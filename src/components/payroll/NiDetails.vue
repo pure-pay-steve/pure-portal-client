@@ -10,8 +10,8 @@
 import { Ref, ref, watch } from 'vue'
 
 import NiNumber from './NiNumber.vue'
-import Dropdown from './Dropdown.vue'
-import { NiDetails } from '../model/NiDetails'
+import Dropdown from '../common/Dropdown.vue'
+import { NiDetails } from '../../model/NiDetails'
 
 const niNumber = ref('')
 const niCategory = ref('')

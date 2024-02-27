@@ -9,9 +9,9 @@
 
 import { ref, watch } from 'vue'
 
-import Toggle from '../components/Toggle.vue'
-import Dropdown from '../components/Dropdown.vue'
-import { DirectorSettings } from '../model/DirectorSettings';
+import Toggle from '../common/Toggle.vue'
+import Dropdown from '../common/Dropdown.vue'
+import { DirectorSettings } from '../../model/DirectorSettings';
 
 const isDirector = ref(false)
 const directorNIMethod = ref<'StandardAnnualisedEarningsMethod' | 'AlternativeMethod' | null>(null)

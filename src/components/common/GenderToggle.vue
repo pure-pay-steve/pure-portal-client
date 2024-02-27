@@ -113,7 +113,7 @@ onMounted(() => {
             <div ref="toggleBackgroundDiv" class="rounded-2xl bg-blue-700 w-10 h-[1.35rem] mx-2 mt-1 pt-[0.05rem]" @click="onMouseClick"
                 :class="checked === null ? 'bg-slate-200' : checked ? 'bg-pink-600' : 'bg-blue-700'">
 
-                <input type="checkbox" v-model="checked" class="opacity-0 w-0" tabindex="-1" />
+                <input type="checkbox" v-model="checked" role="switch" class="opacity-0 w-0" tabindex="-1" />
                 <span :class="checked === null ? 'translate-x-[0.6rem]' : checked ? 'translate-x-[1.15rem]' : 'translate-x-[0.15rem]'"
                     class="inline-block h-[0.95rem] w-[0.95rem] transform rounded-full bg-white transition" />
 

@@ -9,18 +9,17 @@
 
 import { Ref, ref } from "vue"
 
-import { Employee } from "../model/Employee"
+import { PayCategory } from "../model/PayCategory"
 
-import EmployeeEditor from "../components/payroll/EmployeePanel.vue"
+import PayCategoryEditor from "../components/payroll/PayCategoryPanel.vue"
 import FlexBreak from "../components/common/FlexBreak.vue"
-import { toEmployeeDto } from "../dto/EmployeeDto"
 
-const employee = ref({}) as Ref<Employee>
+const payCategory = ref({}) as Ref<PayCategory>
 
 const emit = defineEmits(["save"])
 
 const onSave = () => {
-    emit("save", toEmployeeDto(employee.value))
+    emit("save", payCategory.value)
     // console.log('Saving...')
 
     // if (employee.value) {
@@ -33,10 +32,10 @@ const onSave = () => {
 <template>
     <div class="xl:ml-48 xl:mr-96 mx-3">
         <h1 className="text-3xl font-bold my-4">
-            Employee
+            Pay Category
         </h1>
         <div class="flex flex-col">
-            <employee-editor v-model="employee" v-for="emp in [{ name: 'Steve'}]" :name="emp.name" class="m-1"></employee-editor>
+            <pay-category-editor v-model="payCategory" class="m-1" />
             <flex-break />
             <button @click="onSave" data-testid='submit'
                 class="grow-0 self-end rounded-md bg-indigo-500 mt-5 px-3.5 py-2.5 mr-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Save</button>

@@ -10,7 +10,7 @@
 import { ref, watch } from 'vue'
 import { v4 as uuid } from 'uuid'
 
-import { DateOnly } from '../lib/DateOnly';
+import { DateOnly } from '../../lib/DateOnly';
 
 const id = ref(uuid())
 const date = ref<string | null>(null)

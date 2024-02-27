@@ -9,18 +9,18 @@
 
 import { ref, defineModel } from 'vue'
 
-import { Employee } from '../model/Employee'
+import { Employee } from '../../model/Employee'
 
-import LabelledInput from '../components/LabelledInput.vue'
-import FlexBreak from '../components/FlexBreak.vue'
-import TitleSelector from '../components/TitleSelector.vue'
-import GenderToggle from './GenderToggle.vue'
-import DateSelector from './DateSelector.vue'
+import LabelledInput from '../common/LabelledInput.vue'
+import FlexBreak from '../common/FlexBreak.vue'
+import TitleSelector from '../common/TitleSelector.vue'
+import GenderToggle from '../common/GenderToggle.vue'
+import DateSelector from '../common/DateSelector.vue'
 import TaxCode from './TaxCode.vue'
 import NiDetails from './NiDetails.vue'
 import DirectorsNiSelector from './DirectorsNiSelector.vue'
 import StudentLoanSelector from './StudentLoanSelector.vue'
-import AddressFinder from './AddressFinder.vue'
+import AddressFinder from '../common/AddressFinder.vue'
 
 const emailControl = ref<null | { focus: () => void }>(null)
 
@@ -30,7 +30,7 @@ defineProps({
 
 defineEmits([])
 
-const employee = defineModel<Employee>({required: true});
+const employee = defineModel<Employee>({ required: true });
 
 const onAddressResolved = () => {
     setTimeout(() => {

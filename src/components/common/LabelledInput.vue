@@ -9,7 +9,7 @@
 
 import { ref } from 'vue'
 import { v4 as uuid } from 'uuid'
-import { toLowerCase, toProperCase, toUpperCase } from '../lib/String'
+import { toLowerCase, toProperCase, toUpperCase } from '../../lib/String'
 
 const id = ref(uuid())
 const inputControl = ref<null | { focus: () => void }>(null)

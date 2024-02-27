@@ -9,9 +9,9 @@
 
 import { ref, watch } from 'vue'
 
-import LabelledInput from './LabelledInput.vue'
-import Toggle from './Toggle.vue'
-import { TaxCode } from '../model/TaxCode'
+import LabelledInput from '../common/LabelledInput.vue'
+import Toggle from '../common/Toggle.vue'
+import { TaxCode } from '../../model/TaxCode'
 
 const taxCode = ref('')
 const isNonCumulative = ref(false)
