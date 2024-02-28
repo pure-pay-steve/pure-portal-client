@@ -29,6 +29,7 @@ const enabled = ref(false)
     <!-- the correct `href` attribute -->
     <router-link to="/employee">Employee</router-link>
     <router-link to="/pay-category">Pay Category</router-link>
+    <router-link to="/pay-run">Pay Run</router-link>
   </div>
 
   <router-view></router-view>

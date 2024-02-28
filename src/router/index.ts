@@ -9,10 +9,12 @@ import { createRouter, createWebHashHistory } from "vue-router"
 
 import EmployeeView from "../views/EmployeeView.vue"
 import PayCategoryView from "../views/PayCategoryView.vue"
+import PayRunView from "../views/PayRunView.vue"
 
 const routes = [
     { path: '/employee', component: EmployeeView },
     { path: '/pay-category', component: PayCategoryView },
+    { path: '/pay-run', component: PayRunView }
 ]
 
 const router = createRouter({

@@ -17,7 +17,7 @@
     "luxon": "^3.4.4",
     "uuid": "^9.0.1",
     "vue": "^3.4.15",
-    "vue-router": "4"
+    "vue-router": "^4.3.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.41.2",
