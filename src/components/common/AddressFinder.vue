@@ -45,26 +45,22 @@ const getWidth = () => {
 }
 
 const toFormattedAddress = (address: Address) : string => {
-    console.log(address.postcode)
-
     const formattedAddress = address.formatted_address
     var result = ''
 
     for (var i = 0; i < formattedAddress.length; i++) {
         if (formattedAddress[i].length > 0) {
-            result += formattedAddress[i] + ', '
+            result += formattedAddress[i] + ", "
         }
     }
-    result = result.slice(0, -2)
-    result = result + ' ' + address.postcode
-
-    console.log(result)
+    result = result.endsWith(", ") ? result.slice(0, -2) : result
+    result = result + " " + address.postcode
 
     return result
 }
 
 const onLeaveFocus = () => {
-    emit('leave')
+    emit("leave")
 }
 
 const getAddressSelected = (e: any) => {
@@ -74,7 +70,7 @@ const getAddressSelected = (e: any) => {
         hideGetAddressInput.value = true
         addressValueAsText.value = address.displayValue
         model.value = address
-        emit('resolved')
+        emit("resolved")
 }
 
 const onEdit = () => {

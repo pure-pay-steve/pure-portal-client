@@ -14,7 +14,14 @@ import { EmployeePayRunEntry } from "../model/EmployeePayRunEntry"
 import PayRunPanel from "../components/payroll/PayRunPanel.vue"
 import FlexBreak from "../components/common/FlexBreak.vue"
 
-const model = ref({}) as Ref<EmployeePayRunEntry>
+const model = ref([]) as Ref<EmployeePayRunEntry[]>
+
+model.value = [
+    { descriptor: { id:"1", title: "Mr", firstName: "Steve", lastName: "Smith" }, totalGrossPay: 1000.00, totalTaxableEarnings: 800.00, incomeTax: 200.00, totalNetPay: 678.00, employeePension: 0.00, employeesNi: 122.00, employerPension: 0.00, employersNi: 100.00, studentLoanDeductions: 0.00, postTaxDeductions: 0.00, totalNicableEarnings: 1000.00, preTaxDeductions: 0.00},
+    { descriptor: { id:"2", title: "Mr", firstName: "John", lastName: "Smith" }, totalGrossPay: 1000.00, totalTaxableEarnings: 800.00, incomeTax: 200.00, totalNetPay: 678.00, employeePension: 0.00, employeesNi: 122.00, employerPension: 0.00, employersNi: 100.00, studentLoanDeductions: 0.00, postTaxDeductions: 0.00, totalNicableEarnings: 1000.00, preTaxDeductions: 0.00},
+    { descriptor: { id:"3", title: "Mr", firstName: "Jane", lastName: "Smith" }, totalGrossPay: 1000.00, totalTaxableEarnings: 800.00, incomeTax: 200.00, totalNetPay: 678.00, employeePension: 0.00, employeesNi: 122.00, employerPension: 0.00, employersNi: 100.00, studentLoanDeductions: 0.00, postTaxDeductions: 0.00, totalNicableEarnings: 1000.00, preTaxDeductions: 0.00},
+    { descriptor: { id:"4", title: "Mr", firstName: "Sally", lastName: "Smith" }, totalGrossPay: 1000.00, totalTaxableEarnings: 800.00, incomeTax: 200.00, totalNetPay: 678.00, employeePension: 0.00, employeesNi: 122.00, employerPension: 0.00, employersNi: 100.00, studentLoanDeductions: 0.00, postTaxDeductions: 0.00, totalNicableEarnings: 1000.00, preTaxDeductions: 0.00},
+]
 
 const emit = defineEmits(["save"])
 
@@ -32,7 +39,7 @@ const onSave = () => {
 <template>
     <div class="xl:ml-48 xl:mr-96 mx-3">
         <h1 className="text-3xl font-bold my-4">
-            Pay Category
+            Pay Run
         </h1>
         <div class="flex flex-col">
             <pay-run-panel v-model="model" class="m-1" />

@@ -7,21 +7,15 @@
 
 <script setup lang="ts">
 
-import { ref, defineModel } from "vue"
+import { defineModel } from "vue"
 
-import { PayCategory } from "../../model/PayCategory"
+import { PayCategoryDefinition } from "../../model/PayCategoryDefinition"
+import { payRateUnitsOptions } from "../../model/PayRateUnits"
 
 import LabelledInput from "../common/LabelledInput.vue"
 import FlexBreak from "../common/FlexBreak.vue"
 import Dropdown from "../common/Dropdown.vue"
 import YesNoToggle from "../common/YesNoToggle.vue"
-
-const unitsOptions = [
-    ["PerAnnum", "Per Annum"],
-    ["PerHour", "Per Hour"],
-    ["PerDay", "Per Day"],
-    ["PerPayPeriod", "Per Pay Period"]
-]
 
 defineProps({
     name: String
@@ -29,7 +23,7 @@ defineProps({
 
 defineEmits([])
 
-const payCategory = defineModel<PayCategory>({ required: true });
+const payCategory = defineModel<PayCategoryDefinition>({ required: true });
 
 </script>
 
@@ -40,7 +34,7 @@ const payCategory = defineModel<PayCategory>({ required: true });
             <labelled-input v-model="payCategory.shortName" label="Short name" placeholder="Optional"
                 test-id="short-name" />
             <dropdown v-model="payCategory.units" label="Units" label-position="top"
-                :options="unitsOptions as [string, string][]" test-id="units" />
+                :options="payRateUnitsOptions as [string, string][]" test-id="units" />
             <flex-break />
             <yes-no-toggle v-model="payCategory.isSubjectToTax" top-label="Subject to tax" left-label="No" right-label="Yes"
                 test-id="subject-to-tax" />
@@ -53,6 +47,8 @@ const payCategory = defineModel<PayCategory>({ required: true });
             <yes-no-toggle v-model="payCategory.isTreatedAsOvertime" top-label="Treat as overtime" left-label="No"
                 right-label="Yes" test-id="treat-as-overtime" />
         </div>
-    </div></template>
+    </div>
+</template>
 
 <style scoped></style>
+../../model/PayCategoryDefinition

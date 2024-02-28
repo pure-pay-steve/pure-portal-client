@@ -9,22 +9,23 @@
 
 import { Ref, ref } from "vue"
 
-import { PayCategory } from "../model/PayCategory"
+import { Employee } from "../model/Employee"
 
-import PayCategoryEditor from "../components/payroll/PayCategoryPanel.vue"
+import EmployeePayPanel from "../components/payroll/EmployeePayPanel.vue"
 import FlexBreak from "../components/common/FlexBreak.vue"
 
-const payCategory = ref({}) as Ref<PayCategory>
+import { toEmployeeDto } from "../dto/EmployeeDto"
+import { Http } from "../lib/Http"
+
+const employee = ref({ descriptor: {}}) as Ref<Employee>
 
 const emit = defineEmits(["save"])
 
 const onSave = () => {
-    emit("save", payCategory.value)
-    // console.log('Saving...')
-
-    // if (employee.value) {
-    //     console.dir(JSON.stringify(toEmployeeDto(employee.value)), {depth: null, colors: true})
-    // }
+    emit("save", toEmployeeDto(employee.value))
+    console.dir(employee.value, {depth: null, colors: true})
+    const http = new Http("localhost", "api")
+    http.post("employee", toEmployeeDto(employee.value))
 }
 
 </script>
@@ -32,10 +33,10 @@ const onSave = () => {
 <template>
     <div class="xl:ml-48 xl:mr-96 mx-3">
         <h1 className="text-3xl font-bold my-4">
-            Pay Category
+            Employee pay and deductions
         </h1>
         <div class="flex flex-col">
-            <pay-category-editor v-model="payCategory" class="m-1" />
+            <employee-pay-panel name=""/>
             <flex-break />
             <button @click="onSave" data-testid='submit'
                 class="grow-0 self-end rounded-md bg-indigo-500 mt-5 px-3.5 py-2.5 mr-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Save</button>

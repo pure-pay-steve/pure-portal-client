@@ -15,8 +15,6 @@ const enabled = ref(false)
 //   console.log('Saving...')
 //   console.dir(employee, {depth: null, colors: true})
 
-//   const http = new Http("localhost", "api")
-//   http.post("employee", employee)
 // }
 </script>
 
@@ -27,8 +25,10 @@ const enabled = ref(false)
     <!-- specify the link by passing the `to` prop. -->
     <!-- `<router-link>` will render an `<a>` tag with -->
     <!-- the correct `href` attribute -->
+    <router-link to="/test">Test</router-link>
     <router-link to="/employee">Employee</router-link>
-    <router-link to="/pay-category">Pay Category</router-link>
+    <router-link to="/pay-category-and-deduction">Pay Category &amp; Deduction</router-link>
+    <router-link to="/employee-pay-and-deductions">Employee Pay Category &amp; Deduction</router-link>
     <router-link to="/pay-run">Pay Run</router-link>
   </div>
 

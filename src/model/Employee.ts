@@ -11,20 +11,15 @@ import type { TaxCode } from "./TaxCode"
 import type { NiDetails } from "./NiDetails"
 import type { DirectorSettings } from "./DirectorSettings"
 import type { StudentLoanSettings } from "./StudentLoanSettings"
+import { EmployeeDescriptor } from "./EmployeeDescriptor"
 
 export type Employee = {
-    id: string,
-    title?: string,
-    firstName: string,
-    middleNames?: string,
-    lastName: string,
-    preferredName?: string,
+    descriptor: EmployeeDescriptor,
     dateOfBirth?: DateOnly,
     gender?: 'Male' | 'Female' | null,
     address?: Address,
     emailAddress: string,
     employmentStartDate?: DateOnly,
-    payrollId?: string,
     taxCode?: TaxCode,
     niDetails?: NiDetails,
     directorSettings: DirectorSettings,

@@ -5,7 +5,10 @@
 // Ltd and for information security purposes is classified as     
 // COMPANY CONFIDENTIAL.                                          
 
+import { EmployeeDescriptor } from "./EmployeeDescriptor"
+
 export type EmployeePayRunEntry = {
+    descriptor: EmployeeDescriptor,
     totalHours?: number,
     totalGrossPay: number,
     totalTaxableEarnings: number,

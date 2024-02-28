@@ -5,7 +5,7 @@
 // Ltd and for information security purposes is classified as     
 // COMPANY CONFIDENTIAL.                                          
 
-export type PayCategory = {
+export type PayCategoryDefinition = {
     name: string,
     shortName?: string,
     units: "PerHour" | "PerDay" | "PerAnnum" | "PerPayPeriod",

@@ -17,24 +17,24 @@ const testEmailAddressResult = "maryhad.a@littlelamb.com"
 
 test("My first test", async ({ page }) => {
 
-    await page.goto("http://localhost:5173/")
+    await page.goto("http://localhost:5173/#/employee")
 
     await page.route("**/localhost/api/employee", async (route, request) => {
 
         const employeeDto = request.postDataJSON() as EmployeeDto
 
-        expect(employeeDto.title).toBe("Prof.")
-        expect(employeeDto.firstName).toBe("Suzanne")
-        expect(employeeDto.middleNames).toBe("Sally Šasa")
-        expect(employeeDto.lastName).toBe("van der Merve")
-        expect(employeeDto.preferredName).toBe("Suzie")
+        expect(employeeDto.descriptor.title).toBe("Prof.")
+        expect(employeeDto.descriptor.firstName).toBe("Suzanne")
+        expect(employeeDto.descriptor.middleNames).toBe("Sally Šasa")
+        expect(employeeDto.descriptor.lastName).toBe("van der Merve")
+        expect(employeeDto.descriptor.preferredName).toBe("Suzie")
         expect(employeeDto.dateOfBirth).toBe("1986-03-17")
         expect(employeeDto.gender).toBe("Female")
         expect(employeeDto.address?.displayValue).toBe(testAddressResult)
         expect(employeeDto.address?.postcode).toBe(testAddressResultPostcode)
         expect(employeeDto.emailAddress).toBe(testEmailAddressResult)
         expect(employeeDto.employmentStartDate).toBe("2024-06-21")
-        expect(employeeDto.payrollId).toBe("Emp12321")
+        expect(employeeDto.descriptor.payrollId).toBe("Emp12321")
         expect(employeeDto.taxCode).toBe("1234L")
         expect(employeeDto.taxCodeIsNonCumulative).toBe(true)
         expect(employeeDto.niNumber).toBe("NA9876543P")
