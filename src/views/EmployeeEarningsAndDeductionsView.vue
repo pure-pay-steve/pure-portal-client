@@ -11,7 +11,7 @@ import { Ref, ref } from "vue"
 
 import { Employee } from "../model/Employee"
 
-import EmployeePayPanel from "../components/payroll/EmployeePayPanel.vue"
+import EmployeeEarningsPanel from "../components/payroll/EmployeeEarningsPanel.vue"
 import FlexBreak from "../components/common/FlexBreak.vue"
 
 import { toEmployeeDto } from "../dto/EmployeeDto"
@@ -36,7 +36,7 @@ const onSave = () => {
             Employee pay and deductions
         </h1>
         <div class="flex flex-col">
-            <employee-pay-panel name=""/>
+            <employee-earnings-panel name=""/>
             <flex-break />
             <button @click="onSave" data-testid='submit'
                 class="grow-0 self-end rounded-md bg-indigo-500 mt-5 px-3.5 py-2.5 mr-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Save</button>

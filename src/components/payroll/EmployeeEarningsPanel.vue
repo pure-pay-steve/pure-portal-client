@@ -18,6 +18,13 @@ defineProps({
 defineEmits([])
 
 // const deduction = defineModel<DeductionDefinition>({ required: true });
+const earnings = [
+{ id: "1", name: "Salary", details: "£50,000.00 per annum" },
+{ id: "2", name: "Statutory Maternity Pay", details: "£172.48 per week" },
+{ id: "3", name: "Statutory Sickness Pay", details: " £109.40 per week" },
+{ id: "4", name: "Bonus", details: "fixed amount" },
+{ id: "5", name: "Fire Marshall Allowance", details: "£1.50 per day" }
+]
 
 </script>
 
@@ -42,13 +49,14 @@ defineEmits([])
                         <thead>
                             <tr>
                                 <th scope="col"
-                                    class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Earnings</th>
+                                    class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Earnings</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-200">
-                            <tr v-for="person in [{id: 1, name:'Some earnings' }]" :key="person.id">
-                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">{{
-                                    person.name }}</td>
+                        <tbody class="">
+                            <tr v-for="person in earnings" :key="person.id">
+                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 ml-4"><strong>{{
+                                    person.name }}:</strong>&nbsp;{{ person.details }}</td>
+                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0"><a href="#">Edit</a></td>
                             </tr>
                         </tbody>
                     </table>

@@ -38,10 +38,43 @@ const onAddressResolved = () => {
     }
   });
 };
+
+const tabs = [
+  { name: 'Overview', href: '#', current: true },
+  { name: 'Earnings', href: '#', current: false },
+  { name: 'Deductions', href: '#', current: false },
+  { name: 'Pension', href: '#', current: false },
+  { name: 'Directorships', href: '#', current: false },
+  { name: 'Onboarding', href: '#', current: false }
+]
 </script>
 
 <template>
   <div class="border border-feint rounded-md">
+
+    <!-- <div> class="pc-4 py-6 sm:px-6 lg:px-8"> -->
+      <div class="px-2">
+    <div class="mx-auto max-w-7xl">
+      <div class="sm:hidden">
+        <label for="tabs" class="sr-only">Select a tab</label>
+        <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
+        <select id="tabs" name="tabs" class="block w-full rounded-md border-none bg-white/5 py-2 pl-3 pr-10 text-base text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm">
+          <option v-for="tab in tabs" :key="tab.name" :selected="tab.current">{{ tab.name }}</option>
+        </select>
+      </div>
+      <div class="hidden sm:block">
+        <nav class="flex border-b border-white/10 py-4">
+          <ul role="list" class="flex min-w-full flex-none gap-x-6 px-2 text-sm font-semibold leading-6 text-gray-400">
+            <li v-for="tab in tabs" :key="tab.name">
+              <a :href="tab.href" :class="tab.current ? 'text-indigo-400' : ''">{{ tab.name }}</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+
     <div class="flex flex-row flex-wrap gap-x-3 gap-y-4 p-4">
       <title-selector
         v-model="employee.descriptor.title"

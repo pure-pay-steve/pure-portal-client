@@ -11,7 +11,7 @@ import TestView from "../views/TestView.vue"
 import EmployeeView from "../views/EmployeeView.vue"
 import PayCategoryAndDeductionView from "../views/PayCategoryAndDeductionView.vue"
 import PayRunView from "../views/PayRunView.vue"
-import EmployeePayAndDeductionsView from "../views/EmployeePayAndDeductionsView.vue"
+import EmployeePayAndDeductionsView from "../views/EmployeeEarningsAndDeductionsView.vue"
 
 const routes = [
   { path: "/test", component: TestView },
