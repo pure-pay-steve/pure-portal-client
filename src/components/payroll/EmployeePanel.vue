@@ -10,21 +10,10 @@ import { ref, defineModel } from "vue";
 
 import { Employee } from "../../model/Employee";
 
-import LabelledInput from "../common/LabelledInput.vue";
-import FlexBreak from "../common/FlexBreak.vue";
-import TitleSelector from "../common/TitleSelector.vue";
-import GenderToggle from "../common/GenderToggle.vue";
-import DateSelector from "../common/DateSelector.vue";
-import TaxCode from "./TaxCode.vue";
-import NiDetails from "./NiDetails.vue";
-import DirectorsNiSelector from "./DirectorsNiSelector.vue";
-import StudentLoanSelector from "./StudentLoanSelector.vue";
-import AddressFinder from "../common/AddressFinder.vue";
-
 const emailControl = ref<null | { focus: () => void }>(null);
 
 defineProps({
-  name: String,
+    name: String,
 });
 
 defineEmits([]);
@@ -32,141 +21,46 @@ defineEmits([]);
 const employee = defineModel<Employee>({ required: true });
 
 const onAddressResolved = () => {
-  setTimeout(() => {
-    if (emailControl.value) {
-      emailControl.value.focus();
-    }
-  });
+    setTimeout(() => {
+        if (emailControl.value) {
+            emailControl.value.focus();
+        }
+    });
 };
 
-const tabs = [
-  { name: 'Overview', href: '#', current: true },
-  { name: 'Earnings', href: '#', current: false },
-  { name: 'Deductions', href: '#', current: false },
-  { name: 'Pension', href: '#', current: false },
-  { name: 'Directorships', href: '#', current: false },
-  { name: 'Onboarding', href: '#', current: false }
-]
+
 </script>
 
 <template>
-  <div class="border border-feint rounded-md">
+    <div class="border border-feint rounded-md">
 
-    <!-- <div> class="pc-4 py-6 sm:px-6 lg:px-8"> -->
-      <div class="px-2">
-    <div class="mx-auto max-w-7xl">
-      <div class="sm:hidden">
-        <label for="tabs" class="sr-only">Select a tab</label>
-        <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
-        <select id="tabs" name="tabs" class="block w-full rounded-md border-none bg-white/5 py-2 pl-3 pr-10 text-base text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm">
-          <option v-for="tab in tabs" :key="tab.name" :selected="tab.current">{{ tab.name }}</option>
-        </select>
-      </div>
-      <div class="hidden sm:block">
-        <nav class="flex border-b border-white/10 py-4">
-          <ul role="list" class="flex min-w-full flex-none gap-x-6 px-2 text-sm font-semibold leading-6 text-gray-400">
-            <li v-for="tab in tabs" :key="tab.name">
-              <a :href="tab.href" :class="tab.current ? 'text-indigo-400' : ''">{{ tab.name }}</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+        <!-- <div> class="pc-4 py-6 sm:px-6 lg:px-8"> -->
+        <div class="px-2">
+            <div class="mx-auto max-w-7xl">
+                <div class="sm:hidden">
+                    <label for="tabs" class="sr-only">Select a tab</label>
+                    <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
+                    <select id="tabs" name="tabs" @select="onChange"
+                        class="block w-full rounded-md border-none bg-white/5 py-2 pl-3 pr-10 text-base text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm">
+                        <option v-for="tab in tabs" :key="tab.name" :selected="tab.current">{{ tab.name }}</option>
+                    </select>
+                </div>
+                <div class="hidden sm:block">
+                    <nav class="flex border-b border-white/10 py-4">
+                        <ul role="list"
+                            class="flex min-w-full flex-none gap-x-6 px-2 text-sm font-semibold leading-6 text-gray-400">
+                            <li v-for="tab in tabs" :key="tab.name">
+                                <a :href="tab.href" :class="tab.current ? 'text-indigo-400' : ''">{{ tab.name }}</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <router-view></router-view>
+
     </div>
-  </div>
-
-
-    <div class="flex flex-row flex-wrap gap-x-3 gap-y-4 p-4">
-      <title-selector
-        v-model="employee.descriptor.title"
-        label="Title"
-        test-id="title"
-      ></title-selector>
-      <flex-break />
-      <labelled-input
-        v-model="employee.descriptor.firstName"
-        label="First name"
-        case-treatment="proper-name"
-        test-id="first-name"
-      />
-      <labelled-input
-        v-model="employee.descriptor.middleNames"
-        label="Middle name(s)"
-        case-treatment="proper-name"
-        test-id="middle-names"
-      />
-      <labelled-input
-        v-model="employee.descriptor.lastName"
-        label="Surname"
-        class="flex-grow"
-        case-treatment="proper-name"
-        test-id="last-name"
-      />
-      <flex-break />
-      <labelled-input
-        v-model="employee.descriptor.preferredName"
-        label="Preferred name"
-        case-treatment="proper-name"
-        test-id="preferred-name"
-      />
-      <flex-break />
-      <date-selector
-        v-model="employee.dateOfBirth"
-        label="Date of birth"
-        test-id="date-of-birth"
-      />
-      <gender-toggle
-        v-model="employee.gender"
-        class="sm:ml-8"
-        top-label="Gender"
-        left-label="Male"
-        right-label="Female"
-        test-id="gender"
-      />
-      <flex-break />
-      <address-finder
-        v-model="employee.address"
-        label="Address"
-        size="full"
-        @resolved="onAddressResolved"
-        test-id="address"
-        placeholder="Start typing address..."
-      />
-      <labelled-input
-        v-model="employee.emailAddress"
-        size="long"
-        label="Email"
-        ref="emailControl"
-        test-id="email"
-        case-treatment="all-lower"
-      />
-      <flex-break />
-      <date-selector
-        v-model="employee.employmentStartDate"
-        label="Employment start date"
-        test-id="start-date"
-      />
-      <labelled-input
-        v-model="employee.descriptor.payrollId"
-        label="Payroll Id"
-        placeholder="Leave blank to auto-populate"
-        test-id="payroll-id"
-      />
-      <flex-break />
-      <tax-code v-model="employee.taxCode" test-id="tax-code" />
-      <flex-break />
-      <ni-details v-model="employee.niDetails" test-id="ni-details" />
-      <flex-break />
-      <directors-ni-selector
-        v-model="employee.directorSettings"
-        test-id="directors-ni"
-      />
-      <student-loan-selector
-        v-model="employee.studentLoanSettings"
-        test-id="student-loan"
-      />
-      <flex-break />
-    </div>
-  </div>
 </template>
 
 <style scoped></style>
