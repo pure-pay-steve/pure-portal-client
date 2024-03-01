@@ -42,7 +42,7 @@ const onAddressResolved = () => {
 </script>
 
 <template>
-    <div class="flex flex-row flex-wrap gap-x-3 gap-y-4 p-4">
+    <div class="flex flex-row flex-wrap gap-x-3 gap-y-4 p-4 max-h-[80vh] overflow-y-auto">
         <title-selector v-model="employee.descriptor.title" label="Title" test-id="title"></title-selector>
         <flex-break />
         <labelled-input v-model="employee.descriptor.firstName" label="First name" case-treatment="proper-name"

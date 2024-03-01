@@ -7,32 +7,76 @@
 
 <script setup lang="ts">
 
-import { ref } from 'vue'
+import { ChevronRightIcon } from '@heroicons/vue/20/solid'
+import {
+  CalendarIcon,
+  ChartPieIcon,
+  DocumentDuplicateIcon,
+  FolderIcon,
+  HomeIcon,
+  UsersIcon,
+} from '@heroicons/vue/24/outline'
+import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
+import { MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
+import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 
-const enabled = ref(false)
+import NavBar from './components/common/NavBar.vue'
+import SideMenu from './components/common/SideMenu.vue'
 
-// const onSave = (employee: any) => {
-//   console.log('Saving...')
-//   console.dir(employee, {depth: null, colors: true})
 
-// }
+const navigation = [
+  { name: 'Business', href: '/employee', icon: HomeIcon, current: false },
+  {
+    name: 'Employees',
+    icon: UsersIcon,
+    current: false,
+    children: [
+      { name: 'Steve Wilkinson', id: "1", href: '#/employee/1/overview', current: true },
+      { name: 'Chris Deeson', id: "2", href: '#/employee/2/overview' },
+      { name: 'Freddie Fox', id: "3", href: '#' },
+      { name: 'Danny Dog', id: "4", href: '#' },
+      { name: 'Delphin Donkey', id: "5", href: '#' },
+    ],
+  },
+  {
+    name: 'Pay Runs',
+    icon: FolderIcon,
+    current: false,
+    children: [
+      { name: 'Weekly', href: '#' },
+      { name: 'Monthly', href: '#' },
+    ],
+  },
+  { name: 'Reports', href: '#', icon: CalendarIcon, current: false },
+  { name: 'Notes', href: '#', icon: DocumentDuplicateIcon, current: false },
+]
+
 </script>
 
+
+<!--
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ],
+  }
+  ```
+-->
 <template>
-  <div class="flex flex-row gap-8">
-    <!-- use the router-link component for navigation. -->
-    <!-- specify the link by passing the `to` prop. -->
-    <!-- `<router-link>` will render an `<a>` tag with -->
-    <!-- the correct `href` attribute -->
-    <!-- <router-link to="/test">Test</router-link>
-    <router-link to="/employee">Employee</router-link>
-    <router-link to="/pay-category-and-deduction">Pay Category &amp; Deduction</router-link>
-    <router-link to="/employee-pay-and-deductions">Employee Pay Category &amp; Deduction</router-link>
-    <router-link to="/pay-run">Pay Run</router-link> -->
+  <div><nav-bar /></div>
+
+  <div class="flex flex-row">
+    <side-menu :navigation="navigation" class="grow-0 shrink-0 h-fit" />
+    <div class="mt-8 grow max-h-[85vh] bg-bkg">
+      <RouterView />
+    </div>
   </div>
-
-  <router-view></router-view>
 </template>
-
-
+  
 <style scoped></style>

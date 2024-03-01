@@ -28,8 +28,8 @@ const onSave = () => {
 }
 
 const tabs = [
-    { name: 'Personal Details', href: '/#/employee/overview', current: true },
-    { name: 'Earnings & Deductions', href: '/#/employee', current: false },
+    { name: 'Personal Details', href: '/#/employee/1/overview', current: true },
+    { name: 'Earnings & Deductions', href: '/#/employee/1/earnings-and-deductions', current: false },
     { name: 'Pension', href: '#', current: false },
     { name: 'Statutory', href: '#', current: false },
     { name: 'Onboarding', href: '#', current: false }
@@ -45,11 +45,13 @@ const onClick = (event: Event) => {
 </script>
 
 <template>
-    <div class="xl:ml-48 xl:mr-96 mx-3">
+    <!-- <div class="xl:ml-48 xl:mr-96 mx-3"> -->
+    <div class="mx-3">
+        <div class="rounded py-2 mb-2 border border-none pl-4 font-semibold bg-slate-100">Steve Wilkinson</div>
 
         <div class="border border-feint rounded-md">
 
-            <!-- <div> class="pc-4 py-6 sm:px-6 lg:px-8"> -->
+            <!-- <div> class="pc-4 py-b s2:px-6 lg:pl-4 font-semibold"> -->
             <div class="px-2">
                 <div class="mx-auto max-w-7xl">
                     <div class="sm:hidden">

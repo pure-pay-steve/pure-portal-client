@@ -7,22 +7,26 @@
 
 import { createRouter, createWebHashHistory } from "vue-router"
 
-import TestView from "../views/TestView.vue"
 import EmployeeView from "../views/EmployeeView.vue"
 import EmployeeDetails from "../components/payroll/EmployeeDetails.vue"
 import PayCategoryAndDeductionView from "../views/PayCategoryAndDeductionView.vue"
 import PayRunView from "../views/PayRunView.vue"
 import EmployeePayAndDeductionsView from "../views/EmployeeEarningsAndDeductionsView.vue"
+import EmployeeEarningsPanel from "../components/payroll/EmployeeEarningsPanel.vue"
 
 const routes = [
-  { path: "/test", component: TestView },
+  { path: "/", component: EmployeeView },
   {
-    path: "/employee",
+    path: "/employee/:id",
     component: EmployeeView,
     children: [
       {
         path: "overview",
         component: EmployeeDetails
+      },
+      {
+        path: "earnings-and-deductions",
+        component: EmployeeEarningsPanel
       }
     ]
   },
