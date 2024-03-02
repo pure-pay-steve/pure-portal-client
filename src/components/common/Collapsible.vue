@@ -5,38 +5,45 @@
 <!-- Ltd and for information security purposes is classified as           -->
 <!-- COMPANY CONFIDENTIAL.                                                -->
 
-<script setup lang="ts">
+<script lang="ts" setup>
 
-import { onMounted, ref } from 'vue'
-import { Disclosure, DisclosureButton, DisclosurePanel, Switch } from '@headlessui/vue'
-import { ChevronUpIcon } from '@heroicons/vue/20/solid'
+import { ref } from "vue"
 
-defineProps<{
-    header: string
-    defaultOpen: boolean
-    testId: string
-}>()
+const outer = ref<HTMLElement>()
 
-defineEmits([])
+const onToggle = (): boolean => {
+    if (outer.value) {
+        const classes = outer.value.classList
+        classes.toggle('is-open')
+        return classes.contains('is-open')
+    } else
+        return false
+}
 
-onMounted(() => {
-})
 
 </script>
 
 <template>
-    <div class="p-1 bg-inherit">
-        <disclosure v-slot="{ open }" :default-open="defaultOpen">
-            <disclosure-button class="flex w-full px-2" :class="open ? 'rounded border-b border-b-slate-400 py-2 bg-blue-400' : 'mt-1'">
-                <span class="font-bold ">{{ header }}</span>
-                <chevron-up-icon :class="open ? 'rotate-180 transform' : 'rotate-90 transform'"
-                    class="h-5 w-5 mt-1 text-slate-800 justify-self-start" />
-            </disclosure-button>
-            <disclosure-panel class="px-4 pb-2 pt-4 text-sm text-gray-500 border-1">
-                <slot></slot>
-            </disclosure-panel>
-        </disclosure>
+    <slot name="header" :toggleOpen="onToggle"></slot>
+    <div ref="outer" class="outer">
+        <div class="inner">
+            <slot></slot>
+        </div>
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.outer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.25s ease-out;
+}
+
+.outer.is-open {
+    grid-template-rows: 1fr;
+}
+
+.inner {
+    overflow: hidden;
+}
+</style>

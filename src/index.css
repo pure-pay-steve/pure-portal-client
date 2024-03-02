@@ -11,7 +11,9 @@
         --color-feint: 0deg 0% 90%;
         --color-card-container: 300deg 37.5% 90.9%;
         --color-input-label: 219deg 100% 36%;
-        --color-card: 231deg, 231%, 254%;
+        --color-card: 231deg 231% 254%;
+        --color-side-menu-bkg: 0deg 0% 92.41%;
+        --color-side-menu-fore: 0deg 0% 9.41%;
     }
 
     @media (prefers-color-scheme:dark) {
@@ -21,7 +23,9 @@
             --color-feint: 0deg 0% 90%;
             --color-card-container: 220deg 14.3% 95.9%;
             --color-input-label: 219deg 100% 36%;
-            --color-card: 240deg, 77.01%, 17.06%;
+            --color-card: 240deg 77.01% 17.06%;
+            --color-side-menu-bkg: 247deg 88% 1.5%;
+            --color-side-menu-fore: 244deg 40% 80%;
         }
     }
 }

@@ -14,7 +14,9 @@ export default {
         feint: "hsl(var(--color-feint) / <alpha-value>)",
         cardcontainer: "hsl(var(--color-card-container) / <alpha-value>)",
         inputlabel: "hsl(var(--color-input-label) / <alpha-value>)",
-        card: "hsl(var(--color-card) / <alpha-value>)"
+        card: "hsl(var(--color-card) / <alpha-value>)",
+        sidemenufore: "hsl(var(--color-side-menu-fore) / <alpha-value>)",
+        sidemenubkg: "hsl(var(--color-side-menu-bkg) / <alpha-value>)"
       },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans]

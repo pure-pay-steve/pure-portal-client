@@ -11,9 +11,6 @@ importers:
       '@azure/msal-browser':
         specifier: ^3.10.0
         version: 3.10.0
-      '@formkit/auto-animate':
-        specifier: ^0.8.1
-        version: 0.8.1
       '@headlessui/vue':
         specifier: ^1.7.19
         version: 1.7.19(vue@3.4.18)
@@ -326,10 +323,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /@formkit/auto-animate@0.8.1:
-    resolution: {integrity: sha512-0/Z2cuNXWVVIG/l0SpcHAWFhGdvLJ8DRvEfRWvmojtmRWfEy+LWNwgDazbZqY0qQYtkHcoEK3jBLkhiZaB/4Ig==}
-    dev: false
 
   /@headlessui/vue@1.7.19(vue@3.4.18):
     resolution: {integrity: sha512-VFjKPybogux/5/QYGSq4zgG/x3RcxId15W8uguAJAjPBxelI23dwjOjTx/mIiMkM/Hd3rzFxcf2aIp56eEWRcA==}
