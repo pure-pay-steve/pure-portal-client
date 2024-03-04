@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 
+const emit = defineEmits(["bellClick"])
 
 import { ChevronRightIcon } from '@heroicons/vue/20/solid'
 import {
@@ -14,6 +15,10 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuIt
 import { MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 
+const onBellIconClick = () => {
+    console.log('Bell icon clicked')
+    emit("bellClick")
+}
 </script>
 
 <template>
@@ -74,7 +79,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
                     </DisclosureButton>
                 </div>
                 <div class="hidden lg:ml-4 lg:flex lg:items-center">
-                    <button type="button"
+                    <button type="button" @click="onBellIconClick"
                         class="relative flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                         <span class="absolute -inset-1.5" />
                         <span class="sr-only">View notifications</span>
@@ -94,7 +99,8 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
                             </MenuButton>
                         </div>
                         <transition enter-active-class="transition ease-out duration-100"
-                            enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100"
+                            enter-from-class="transform opacity-0 scale-95"
+                            enter-to-class="transform opacity-100 scale-100"
                             leave-active-class="transition ease-in duration-75"
                             leave-from-class="transform opacity-100 scale-100"
                             leave-to-class="transform opacity-0 scale-95">
@@ -148,7 +154,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
                         <div class="text-base font-medium text-gray-800">Tom Cook</div>
                         <div class="text-sm font-medium text-gray-500">tom@example.com</div>
                     </div>
-                    <button type="button"
+                    <button type="button" @click="onBellIconClick"
                         class="relative ml-auto flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                         <span class="absolute -inset-1.5" />
                         <span class="sr-only">View notifications</span>

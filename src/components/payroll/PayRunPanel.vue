@@ -15,7 +15,9 @@ import { AgGridVue } from "ag-grid-vue3"
 import type { GridApi, GetRowIdFunc, GetRowIdParams, IRowNode, CellClickedEvent, ColDef, DateStringAdvancedFilterModel } from "ag-grid-community"
 
 import { EmployeePayRunEntry } from "../../model/EmployeePayRunEntry"
-import { EmployeeDescriptorRenderer } from "../../grid/EmployeeDescriptorRenderer"
+import { EmployeeDescriptorRenderer } from "../grid/EmployeeDescriptorRenderer"
+import { WordBreakHeaderComponent } from "../grid/WordBreakHeaderComponent"
+import PopoutPanel from "../common/PopoutPanel.vue"
 
 const currencyFormatter = new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" })
 
@@ -35,12 +37,12 @@ const makeHeader = (header: string, field: string) => ({
   headerName: header,
   field: field,
   valueFormatter: formatNumber,
-  wrapHeaderText: true,
   autoHeaderHeight: true,
-  type: "rightAligned",
   resizable: false,
   sortable: false,
-  headerclass: "break-word",
+  headerComponent: WordBreakHeaderComponent,
+  type: "rightAligned",
+  headerClass: "ag-right-aligned-header"
 })
 
 const columnDefs: ColDef<any, any>[] = [
@@ -50,18 +52,19 @@ const columnDefs: ColDef<any, any>[] = [
     valueFormatter: formatNumber,
     cellRenderer: EmployeeDescriptorRenderer,
     valueGetter: (params: any) => params.data.descriptor,
-    minWidth: 175
+    minWidth: 175,
+    sortable: true
   },
   makeHeader("Gross Pay", "totalGrossPay"),
   makeHeader("Pre-tax Deductions", "preTaxDeductions"),
   makeHeader("Taxable Pay", "totalTaxableEarnings"),
   makeHeader("Post-tax Deductions", "postTaxDeductions"),
-  makeHeader("Tax", "incomeTax"),
+  makeHeader(" Tax", "incomeTax"),
   makeHeader("Employers NI", "employersNi"),
   makeHeader("Employees NI", "employeesNi"),
   makeHeader("Employer Pension", "employerPension"),
   makeHeader("Employee Pension", "employeePension"),
-  makeHeader("Student   Loan", "studentLoanDeductions"),
+  makeHeader("Student Loan", "studentLoanDeductions"),
   makeHeader("Net Pay", "totalNetPay")
 ]
 
@@ -100,12 +103,16 @@ const getRowStyle = (params: any) => {
 const onClick = () => {
   gridApi.value.sizeColumnsToFit()
   console.log("Clicked")
+  open.value = !open.value
 }
+
+const open = ref(false)
 
 </script>
 
 <template>
-  <div class="ag-theme-quartz-auto-dark">
+  <popout-panel :open="open" />
+  <div class="ag-theme-quartz-auto-dark pay-run-table">
     <ag-grid-vue
       :gridOptions="{ suppressCellFocus: true, ensureDomOrder: true, tooltipShowDelay: 1000, paginationPageSize: 2 }"
       :onGridReady="onGridReady" rowSelection="single" style="height: 30vh;" :columnDefs="columnDefs"
@@ -115,16 +122,15 @@ const onClick = () => {
 </template>
 
 <style>
-.ag-theme-quartz,
-.ag-theme-quartz-dark,
-.ag-theme-quartz-auto-dark {
-  --ag-cell-horizontal-padding: 0.2rem;
-}
+@media (width <=1500px) {
 
-.ag-header-cell-text {
-  word-wrap: break-word;
-  white-space: normal;
-  display: block;
+  .ag-theme-quartz.pay-run-table,
+  .ag-theme-quartz-dark.pay-run-table,
+  .ag-theme-quartz-auto-dark.pay-run-table {
+    --ag-cell-horizontal-padding: 0.25rem;
+    --ag-font-size: 0.75rem;
+  }
+
 }
 
 /* .ag-row-even {
@@ -136,4 +142,4 @@ const onClick = () => {
   } */
 </style>
 
-<style scoped></style>
+<style scoped></style>../grid/EmployeeDescriptorRenderer

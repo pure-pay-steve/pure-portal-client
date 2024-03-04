@@ -6,7 +6,7 @@
 // COMPANY CONFIDENTIAL.                                          
 
 import { type ICellRendererComp, type ICellRendererParams } from "ag-grid-community"
-import { EmployeeDescriptor } from "../model/EmployeeDescriptor"
+import { EmployeeDescriptor } from "../../model/EmployeeDescriptor"
 
 export class EmployeeDescriptorRenderer implements ICellRendererComp {
     eGui: any

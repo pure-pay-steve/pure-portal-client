@@ -22,10 +22,13 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 
 import NavBar from './components/common/NavBar.vue'
 import SideMenu from './components/common/SideMenu.vue'
+import ModalDialog from "./components/common/ModalDialog.vue"
+
+import { Ref, h, ref, render } from "vue"
 
 
 const navigation = [
-  { name: 'Business', href: '/employee', icon: HomeIcon, current: false },
+  { name: 'Business', href: '#/pay-category-and-deduction', icon: HomeIcon, current: false },
   {
     name: 'Employees',
     icon: UsersIcon,
@@ -51,6 +54,26 @@ const navigation = [
   { name: 'Notes', href: '#', icon: DocumentDuplicateIcon, current: false },
 ]
 
+
+//const mainPanel = ref({}) as Ref<HTMLDivElement>
+
+const open = ref(false)
+const showModal = () => {
+  open.value = true
+  // console.log('showModal')
+  // const dialog = h(ModalDialog)
+  // render(dialog, mainPanel.value)
+  //mainPanel.value.appendChild(document.createElement('modal-dialog'))
+}
+
+const onClose = () => {
+  open.value = false
+  // console.log('onClose')
+  // const dialog = h(ModalDialog)
+  // render(dialog, mainPanel.value)
+  //mainPanel.value.appendChild(document.createElement('modal-dialog'))
+}
+
 </script>
 
 
@@ -68,15 +91,17 @@ const navigation = [
   }
   ```
 -->
+
 <template>
-  <div><nav-bar /></div>
+  <div><nav-bar @bell-click="showModal" /></div>
 
   <div class="flex flex-row">
-    <side-menu :navigation="navigation" class="grow-0 shrink-0 h-fit" />
+    <modal-dialog v-if="open" @close="onClose" />
+    <side-menu :navigation="navigation" class="grow-0 shrink-0 h-[90vh]" />
     <div class="mt-8 grow max-h-[85vh] bg-bkg">
       <RouterView />
     </div>
   </div>
 </template>
-  
+
 <style scoped></style>
