@@ -13,6 +13,7 @@ import { EmployeePayRunEntry } from "../model/EmployeePayRunEntry"
 
 import PayRunPanel from "../components/payroll/PayRunPanel.vue"
 import FlexBreak from "../components/common/FlexBreak.vue"
+import EmployeePayRunDetails from "../components/payroll/EmployeePayRunDetails.vue"
 
 const model = ref([]) as Ref<EmployeePayRunEntry[]>
 
@@ -37,15 +38,14 @@ const onSave = () => {
 </script>
 
 <template>
-    <div class="xl:ml-48 xl:mr-96 mx-3">
+    <div class="mx-3">
         <h1 className="text-3xl font-bold my-4">
             Pay Run
         </h1>
         <div class="flex flex-col">
             <pay-run-panel v-model="model" class="m-1" />
             <flex-break />
-            <button @click="onSave" data-testid='submit'
-                class="grow-0 self-end rounded-md bg-indigo-500 mt-5 px-3.5 py-2.5 mr-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Save</button>
+            <employee-pay-run-details class="mt-2"/>
 
         </div>
     </div>

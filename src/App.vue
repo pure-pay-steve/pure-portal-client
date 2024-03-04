@@ -43,7 +43,7 @@ const navigation = [
     icon: FolderIcon,
     current: false,
     children: [
-      { name: 'Weekly', href: '#' },
+      { name: 'Weekly', href: '#/pay-run' },
       { name: 'Monthly', href: '#' },
     ],
   },

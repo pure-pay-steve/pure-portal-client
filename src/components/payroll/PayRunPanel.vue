@@ -39,7 +39,8 @@ const makeHeader = (header: string, field: string) => ({
   autoHeaderHeight: true,
   type: "rightAligned",
   resizable: false,
-  sortable: false
+  sortable: false,
+  headerclass: "break-word",
 })
 
 const columnDefs: ColDef<any, any>[] = [
@@ -60,7 +61,7 @@ const columnDefs: ColDef<any, any>[] = [
   makeHeader("Employees NI", "employeesNi"),
   makeHeader("Employer Pension", "employerPension"),
   makeHeader("Employee Pension", "employeePension"),
-  makeHeader("Student Loan", "studentLoanDeductions"),
+  makeHeader("Student   Loan", "studentLoanDeductions"),
   makeHeader("Net Pay", "totalNetPay")
 ]
 
@@ -86,12 +87,12 @@ const onGridReady = (params: any) => {
   )
   setTimeout(() => {
     gridApi.value.sizeColumnsToFit()
-  }, 1250)
+  }, 100)
 }
 
 const getRowStyle = (params: any) => {
   if (params.node.rowPinned === 'bottom') {
-    return { "font-weight": "500" };
+    return { "font-weight": "500" }
   }
   return {}
 }
@@ -104,15 +105,27 @@ const onClick = () => {
 </script>
 
 <template>
-  <div class="ag-theme-quartz-auto-dark border border-feint rounded-md">
-    <ag-grid-vue :gridOptions="{ suppressCellFocus: true, ensureDomOrder: true, tooltipShowDelay: 1000, paginationPageSize: 2 }"
-      :onGridReady="onGridReady" rowSelection="single" style="width: 75vw; height: 30vh;" :columnDefs="columnDefs"
+  <div class="ag-theme-quartz-auto-dark">
+    <ag-grid-vue
+      :gridOptions="{ suppressCellFocus: true, ensureDomOrder: true, tooltipShowDelay: 1000, paginationPageSize: 2 }"
+      :onGridReady="onGridReady" rowSelection="single" style="height: 30vh;" :columnDefs="columnDefs"
       :rowData="payRunEntries" :getRowStyle="getRowStyle" /> <!-- pagination-->
     <button @click="onClick">Click</button>
   </div>
 </template>
 
 <style>
+.ag-theme-quartz,
+.ag-theme-quartz-dark,
+.ag-theme-quartz-auto-dark {
+  --ag-cell-horizontal-padding: 0.2rem;
+}
+
+.ag-header-cell-text {
+  word-wrap: break-word;
+  white-space: normal;
+  display: block;
+}
 
 /* .ag-row-even {
     background-color: #ffffff;
@@ -121,7 +134,6 @@ const onClick = () => {
   .ag-row-odd {
     background-color: #dddddd;
   } */
-
 </style>
 
 <style scoped></style>
