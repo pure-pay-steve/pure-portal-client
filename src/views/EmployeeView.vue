@@ -11,8 +11,16 @@ import { Ref, ref } from "vue"
 
 import { Employee } from "../model/Employee"
 
+const showPreview = ref(false)
+
+const onShowPreview = () => showPreview.value = true
+
+const onClose = () => showPreview.value = false
+
 import EmployeeEditor from "../components/payroll/EmployeePanel.vue"
 import FlexBreak from "../components/common/FlexBreak.vue"
+import P45Preview from "../components/payroll/P45Preview.vue"
+
 import { toEmployeeDto } from "../dto/EmployeeDto"
 import { Http } from "../lib/Http"
 
@@ -47,7 +55,10 @@ const onClick = (event: Event) => {
 <template>
     <!-- <div class="xl:ml-48 xl:mr-96 mx-3"> -->
     <div class="mx-3">
-        <div class="rounded py-2 mb-2 border border-none pl-4 font-semibold bg-slate-100">Steve Wilkinson</div>
+        <p45-preview v-if="showPreview" @close="onClose" />
+        <div class="rounded py-2 mb-2 border border-none pl-4 font-semibold bg-slate-100"><span>Steve
+                Wilkinson</span><button class="ml-8 font-normal text-xs text-blue-700" @click="onShowPreview">View
+                P45</button></div>
 
         <div class="border border-feint rounded-md">
 
@@ -67,8 +78,9 @@ const onClick = (event: Event) => {
                             <ul role="list"
                                 class="flex min-w-full flex-none gap-x-6 px-2 text-sm font-semibold leading-6 text-gray-400">
                                 <li v-for="tab in tabs" :key="tab.name">
-                                    <a :href="tab.href" :class="tab.current ? 'text-indigo-400' : ''" @click="onClick">{{
-                                        tab.name }}</a>
+                                    <a :href="tab.href" :class="tab.current ? 'text-indigo-400' : ''"
+                                        @click="onClick">{{
+            tab.name }}</a>
                                 </li>
                             </ul>
                         </nav>

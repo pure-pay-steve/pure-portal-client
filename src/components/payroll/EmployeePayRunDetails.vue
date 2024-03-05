@@ -9,6 +9,11 @@
 <script lang="ts" setup>
 
 import { PencilIcon, TrashIcon } from '@heroicons/vue/20/solid'
+import { ref } from "vue";
+
+const emit = defineEmits(["showPreview"])
+
+const onShowPreview = () => emit("showPreview")
 
 </script>
 
@@ -16,8 +21,13 @@ import { PencilIcon, TrashIcon } from '@heroicons/vue/20/solid'
 
     <div class="flex flex-col grow gap-y-4 border border-feint rounded-md p-4">
         <div class="flex flex-row wrap items-baseline gap-x-4">
-            <div class="text-lg font-bold grow">Steve Wilkinson</div>
-            <div class="grow-0 ml-auto mr-6 text-sm">Gross pay: <strong>£1000.08</strong>, Net pay: <strong>£872.95</strong></div>
+            <div class="text-lg font-bold grow"><span>Steve Wilkinson</span>
+                <button class="ml-8 font-normal text-xs text-blue-700" @click="onShowPreview">Preview
+                    Payslip</button>
+            </div>
+            <div class="grow-0 ml-auto mr-6 text-sm">Gross pay: <strong>£1000.08</strong>, Net pay:
+                <strong>£872.95</strong>
+            </div>
         </div>
         <div class="flex flex-row grow gap-x-16 p-4"
             style='font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;'>
