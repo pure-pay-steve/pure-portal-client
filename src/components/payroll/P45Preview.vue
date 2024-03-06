@@ -25,7 +25,7 @@ const onClick = (event: Event) => {
 
 <template>
     <div id="preview-background"
-        class="flex overflow-x-hidden overflow-y-auto fixed h-full top-0 left-0 right-0 z-50 justify-center items-center bg-slate-300/50">
+        class="flex overflow-x-hidden overflow-y-scroll fixed h-full top-0 left-0 right-0 z-50 justify-center bg-slate-300/50">
         <div id="payslip-preview" class="scale-90 page absolute">
             <img src="../../assets/hmrc-logo.png" alt="HM Revenue and Customs"
                 style="position: absolute; height: 12mm; width: auto; top: 13.408mm; left: 16mm" />
@@ -132,7 +132,8 @@ const onClick = (event: Event) => {
 
             <div class="numbered-box" style="top: 144.771mm; left: 107.48mm;">12</div>
             <span class="form-text" style="top: 145mm; left:116.5mm">Employee's private address</span>
-            <div class="field-box" style="top: 151.325mm; left: 116.5mm; height: 18mm; line-height: 11pt;">3 Osborne
+            <div class="field-box"
+                style="top: 151.325mm; left: 116.5mm; height: 18mm; line-height: 11pt; padding-top: 2pt;">3 Osborne
                 Road,<br />Pilgrims
                 Hatch,<br />Brentwood,<br />Essex
             </div>
@@ -142,7 +143,8 @@ const onClick = (event: Event) => {
             <div class="numbered-box" style="top: 185.597mm; left: 107.48mm;">13</div>
             <span class="form-text" style="top: 185mm; left:116.5mm">I certify that the details entered in items 1 to 11
                 on<br />this form are correct.<br />Employers name and address</span>
-            <div class="field-box" style="top: 200.347mm; left: 116.5mm; height: 24mm; line-height: 11pt;">FINANCIAL
+            <div class="field-box"
+                style="top: 200.347mm; left: 116.5mm; height: 24mm; line-height: 11pt; padding-top: 2pt;">FINANCIAL
                 SATNAV LTD<br />85 Great Portland Street,<br />LONDON</div>
             <span class="form-text" style="top: 226mm; left:116.5mm">Postcode</span>
             <div class="field-box" style="top: 231.055mm; left: 116.5mm;">W1W 7LT</div>
