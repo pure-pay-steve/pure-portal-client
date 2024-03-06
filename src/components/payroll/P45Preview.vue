@@ -4,16 +4,16 @@ import { onMounted, onUnmounted, ref } from "vue"
 
 const emit = defineEmits(["close"])
 
-
-
 onMounted(() => {
     const el = document.querySelector("#preview-background")
     el?.addEventListener("click", (event) => onClick(event))
+    document.addEventListener("keydown", (event) => onKeydown(event))
 })
 
 onUnmounted(() => {
     const el = document.querySelector("#preview-background")
     el?.removeEventListener("click", (event) => onClick(event))
+    document.removeEventListener("keydown", (event) => onKeydown(event))
 })
 
 const onClick = (event: Event) => {
@@ -21,6 +21,13 @@ const onClick = (event: Event) => {
     if (!(el?.contains(event.target as Node)))
         emit("close")
 }
+
+const onKeydown = (event: KeyboardEvent) => {
+    if (event.key === "Escape") {
+        emit("close")
+    }
+}
+
 </script>
 
 <template>
