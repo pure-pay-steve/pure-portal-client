@@ -130,7 +130,15 @@ const open = ref(false)
     --ag-cell-horizontal-padding: 0.25rem;
     --ag-font-size: 0.75rem;
   }
+}
 
+@media only screen and (width <=1800px) and (width >1500px) {
+
+.ag-theme-quartz.pay-run-table,
+.ag-theme-quartz-dark.pay-run-table,
+.ag-theme-quartz-auto-dark.pay-run-table {
+  --ag-cell-horizontal-padding: 0.3rem;
+}
 }
 
 /* .ag-row-even {

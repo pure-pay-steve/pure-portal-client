@@ -35,25 +35,62 @@ const onClick = (event: Event) => {
                 employee leaving work</span>
             <span style="position: absolute; top: 21.25mm; left: 152mm; font-size: 12pt;">Copy for new employer</span>
             <div style="position: absolute; height: 3.5mm; width: 184mm; top: 28.391mm; background-color: black;"></div>
+
             <div class="numbered-box" style="top: 38.876mm;">1</div>
-            <span class="form-text" style="top: 38mm; left:22mm">Employee PAYE reference</span>
+            <span class="form-text" style="top: 38mm; left:22mm">Employer PAYE reference</span>
             <span class="form-text" style="top: 43mm; left:22mm">Office number</span>
             <span class="form-text" style="top: 43mm; left:44.5mm">Reference number</span>
-
             <div class="field-box" style="top: 49.039mm; left: 22mm; width: 16mm;"></div>
             <span style="font-size: 18pt; top: 47.039mm; left: 40mm; position: absolute;">/</span>
             <div class="field-box" style="top: 49.039mm; left: 44.5mm; width: 54mm;"></div>
 
             <div class="numbered-box" style="top: 60.376mm;">2</div>
+            <span class="form-text" style="top: 59.5mm; left:22mm">Employee's National Insurance number</span>
+            <div class="field-box" style="top: 65.981mm; left: 22mm; width: 76.5mm;"></div>
+
             <div class="numbered-box" style="top: 77.376mm;">3</div>
+            <span class="form-text" style="top: 76.8mm; left:22mm">Title - enter MR, MRS, MISS, MS or other title</span>
+            <div class="field-box" style="top: 82.897mm; left: 22mm; width: 76.5mm;"></div>
+            <span class="form-text" style="top: 89.6mm; left:22mm">Surname or family name</span>
+            <div class="field-box" style="top: 95.597mm; left: 22mm; width: 76.5mm;"></div>
+            <span class="form-text" style="top: 102.3mm; left:22mm">First name(s)</span>
+            <div class="field-box" style="top: 108.297mm; left: 22mm; width: 76.5mm;"></div>
+            
             <div class="numbered-box" style="top: 119.876mm;">4</div>
+            <span class="form-text" style="top: 119.3mm; left:22mm">Leaving date DD MM YYYY</span>
+            <div class="field-box" style="top: 125.239mm; left: 22mm; width: 10mm;"></div>
+            <div class="field-box" style="top: 125.239mm; left: 35.5mm; width: 10mm;"></div>
+            <div class="field-box" style="top: 125.239mm; left: 49mm; width: 20mm;"></div>
 
-            <div class="numbered-box" style="left: 107.48mm; top: 38.876mm;">5</div>
-            <div class="numbered-box" style="left: 107.48mm; top: 55.876mm;">6</div>
-            <div class="numbered-box" style="left: 107.48mm; top: 85.376mm;">7</div>
+            <div class="numbered-box" style="top: 38.876mm; left: 107.48mm;">5</div>
+            <span class="form-text" style="top: 38.2mm; left:116.5mm">Student Loan deductions</span>
+            <div class="field-box" style="top: 44.239mm; left: 116.5mm; width: 5mm;"></div>
+            <span class="form-text" style="top: 46mm; left:123.5mm">Student Loan deductions to continue</span>
 
-            <div style="position: absolute; height: 1px; width: 210mm; top: 140mm; left: 0; background-color: black;">
-            </div>
+            <div class="numbered-box" style="top: 55.876mm; left: 107.48mm;">6</div>
+            <span class="form-text" style="top: 55mm; left:116.5mm">Tax code at leaving date</span>
+            <div class="field-box" style="top: 61.739mm; left: 116.5mm; width: 43mm;"></div>
+            <span class="form-text" style="top: 69mm; left:116.5mm">If week 1 or month 1 applies, enter 'X' in the box below.</span>
+            <span class="form-text" style="top: 75.5mm; left:116.5mm">Week 1/month 1</span>
+            <div class="field-box" style="top: 74.439mm; left: 142.38mm; width: 5mm;"></div>
+
+            <div class="numbered-box" style="top: 85.376mm; left: 107.48mm;">7</div>
+            <span class="form-text" style="top: 84.7mm; left:116.5mm">Last entries on Payroll record/Deductions Working Sheet<br/><b>Complete only if tax code is cumulative.</b> If there is an 'X'<br/>at box 6 there will be no entries here.</span>
+            
+            <div class="field-box" style="top: 99.839mm; left: 136.45mm; width: 10mm;"></div>
+            <div class="field-box" style="top: 99.839mm; left: 172.1mm; width: 10mm;"></div>
+
+
+            <!-- Second half of page starts here -->
+            <div style="position: absolute; height: 1px; width: 210mm; top: 140mm; left: 0; background-color: black;"></div>
+
+            <div class="numbered-box" style="top: 144.771mm;">8</div>
+            <div class="numbered-box" style="top: 181.787mm;">9</div>
+            <div class="numbered-box" style="top: 208.139mm;">10</div>
+            <div class="numbered-box" style="top: 225.639mm;">11</div>
+
+            <div class="numbered-box" style="top: 144.771mm; left: 107.48mm;">12</div>
+            <div class="numbered-box" style="top: 185.597mm; left: 107.48mm;">13</div>
         </div>
     </div>
 
