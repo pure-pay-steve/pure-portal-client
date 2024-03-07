@@ -12,7 +12,10 @@ import EmployeeDetails from "../components/payroll/EmployeeDetails.vue"
 import PayCategoryAndDeductionView from "../views/PayCategoryAndDeductionView.vue"
 import PayRunView from "../views/PayRunView.vue"
 import EmployeePayAndDeductionsView from "../views/EmployeeEarningsAndDeductionsView.vue"
-import EmployeeEarningsPanel from "../components/payroll/EmployeeEarningsPanel.vue"
+import EmployeeEarningsAndDeductionsPanel from "../components/payroll/EmployeeEarningsAndDeductionsPanel.vue"
+import EmployeeOnboarding from "../components/payroll/EmployeeOnboarding.vue"
+import ReportsView from "../views/ReportsView.vue"
+import EmployeeDocumentsPanel from "../components/payroll/EmployeeDocumentsPanel.vue"
 
 const routes = [
   { path: "/", component: EmployeeView },
@@ -26,13 +29,22 @@ const routes = [
       },
       {
         path: "earnings-and-deductions",
-        component: EmployeeEarningsPanel
+        component: EmployeeEarningsAndDeductionsPanel
+      },
+      {
+        path: "onboarding",
+        component: EmployeeOnboarding
+      },
+      {
+        path: "documents",
+        component: EmployeeDocumentsPanel
       }
     ]
   },
   { path: "/pay-category-and-deduction", component: PayCategoryAndDeductionView },
   { path: "/pay-run", component: PayRunView },
-  { path: "/employee-pay-and-deductions", component: EmployeePayAndDeductionsView }
+  { path: "/employee-pay-and-deductions", component: EmployeePayAndDeductionsView },
+  { path: "/reports", component: ReportsView }
 ]
 
 const router = createRouter({

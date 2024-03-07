@@ -41,7 +41,10 @@ const onBellIconClick = () => {
                             <rect x="15" y="15" width="14" height="14" rx="3" ry="3" fill="url(#grad)" />
                             <text x="4" y="25" font-family="var(--ag-font-family)" font-bold font-size="10"
                                 fill="white">P</text>
-                        </svg><span class="pl-2 text-xl font-bold text-gray-200">Pure Payroll</span>
+                        </svg>
+                        <span class="pl-2 text-[1.6rem] font-bold text-gray-200">Pure Payroll</span>
+                        <span class="ml-6 px-2 text-[1.1rem] font-bold text-gray-200 border rounded">ABC Accounting
+                            Ltd</span>
                     </div>
                     <!-- <div class="hidden lg:ml-6 lg:flex lg:space-x-8">
             Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"

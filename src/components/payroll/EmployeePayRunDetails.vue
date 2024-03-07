@@ -10,8 +10,10 @@
 
 import { PencilIcon, TrashIcon } from '@heroicons/vue/20/solid'
 import { ref } from "vue";
+import { EmployeePayRunEntry } from "../../model/EmployeePayRunEntry";
 
 const emit = defineEmits(["showPreview"])
+const model = defineModel<EmployeePayRunEntry | undefined>()
 
 const onShowPreview = () => emit("showPreview")
 
@@ -21,7 +23,8 @@ const onShowPreview = () => emit("showPreview")
 
     <div class="flex flex-col grow gap-y-4 border border-feint rounded-md p-4">
         <div class="flex flex-row wrap items-baseline gap-x-4">
-            <div class="text-lg font-bold grow"><span>Steve Wilkinson</span>
+            <div class="text-lg font-bold grow"><span>{{ model?.descriptor?.firstName }} {{ model?.descriptor?.lastName
+                    }}</span>
                 <button class="ml-8 font-normal text-xs text-blue-700" @click="onShowPreview">Preview
                     Payslip</button>
             </div>

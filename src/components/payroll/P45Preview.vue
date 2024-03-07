@@ -34,14 +34,16 @@ const onKeydown = (event: KeyboardEvent) => {
     <div id="preview-background"
         class="flex overflow-x-hidden overflow-y-scroll fixed h-full top-0 left-0 right-0 z-50 justify-center bg-slate-300/50">
         <div id="payslip-preview" class="scale-90 page absolute">
+
             <img src="../../assets/hmrc-logo.png" alt="HM Revenue and Customs"
                 style="position: absolute; height: 12mm; width: auto; top: 13.408mm; left: 16mm" />
             <span style="position: absolute; top: 8.25mm; left: 167mm; font-size: 14pt; font-weight: bold;">P45 Part
                 1A</span>
             <span style="position: absolute; top: 14.5mm; left: 117.5mm; font-size: 14pt; font-weight: bold;">Details of
                 employee leaving work</span>
-            <span style="position: absolute; top: 21.25mm; left: 152mm; font-size: 12pt;">Copy for new employer</span>
-            <div style="position: absolute; height: 3.5mm; width: 184mm; top: 28.391mm; background-color: black;"></div>
+            <span style="position: absolute; top: 21.25mm; left: 159mm; font-size: 12pt;">Copy for employee</span>
+
+            <div style="position: absolute; height: 3.2mm; width: 184mm; top: 29.391mm; background-color: black;"></div>
 
             <div class="numbered-box" style="top: 38.876mm;">1</div>
             <span class="form-text" style="top: 38mm; left:22mm">Employer PAYE reference</span>

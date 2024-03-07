@@ -16,6 +16,7 @@ import FlexBreak from "../components/common/FlexBreak.vue"
 import EmployeePayRunDetails from "../components/payroll/EmployeePayRunDetails.vue"
 import PayslipPreview from "../components/payroll/PayslipPreview.vue"
 
+const previewModel = ref({}) as Ref<EmployeePayRunEntry>
 const model = ref([]) as Ref<EmployeePayRunEntry[]>
 const showPreview = ref(false)
 
@@ -41,6 +42,12 @@ const onShowPreview = () => showPreview.value = true
 
 const onClose = () => showPreview.value = false
 
+const onSelectionChange = (selected: EmployeePayRunEntry) => {
+    console.log('selected' + selected?.descriptor?.id)
+    if (selected)
+        previewModel.value = selected
+}
+
 </script>
 
 <template>
@@ -50,9 +57,17 @@ const onClose = () => showPreview.value = false
         </h1> -->
         <payslip-preview v-if="showPreview" @close="onClose" />
         <div class="flex flex-col">
-            <pay-run-panel v-model="model" class="m-1" />
+            <div class="flex flex-row gap-x-8 rounded py-2 mb-2 border border-none pl-4 font-semibold bg-slate-300">
+                <span class="grow justify-self-left text-slate-700">Weekly Pay Run</span><span
+                    class="grow justify-self-center text-center">
+                    01/01/2024 - 31/01/2024 (M10)</span><span
+                    class="grow justify-self-end content-end text-right mr-5">Pay
+                    Day: 20/01/2024</span>
+            </div>
+            <pay-run-panel v-model="model" class="m-1" @on-selection-changed="onSelectionChange" />
             <flex-break />
-            <employee-pay-run-details class="mt-2" @show-preview="onShowPreview" />
+            <employee-pay-run-details v-if="previewModel?.descriptor != undefined" class="mt-2"
+                @show-preview="onShowPreview" v-model="previewModel" />
 
         </div>
     </div>

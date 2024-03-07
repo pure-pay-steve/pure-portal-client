@@ -27,7 +27,8 @@ defineProps({
   name: String
 })
 
-defineEmits([])
+const emit = defineEmits(['onSelectionChanged', 'onActivity'])
+
 
 const payRunEntries = defineModel<EmployeePayRunEntry[]>({ required: true })
 
@@ -108,6 +109,15 @@ const onClick = () => {
 
 const open = ref(false)
 
+const onRowSelected = (event: any) => {
+  var selected = null as IRowNode<any> | null
+  const selectedRows = event.api.getSelectedRows() as IRowNode<any>[]
+  if (selectedRows && selectedRows.length > 0) {
+    selected = selectedRows[0]
+  }
+  emit('onSelectionChanged', selected)
+}
+
 </script>
 
 <template>
@@ -116,7 +126,7 @@ const open = ref(false)
     <ag-grid-vue
       :gridOptions="{ suppressCellFocus: true, ensureDomOrder: true, tooltipShowDelay: 1000, paginationPageSize: 2 }"
       :onGridReady="onGridReady" rowSelection="single" style="height: 30vh;" :columnDefs="columnDefs"
-      :rowData="payRunEntries" :getRowStyle="getRowStyle" /> <!-- pagination-->
+      :onSelectionChanged="onRowSelected" :rowData="payRunEntries" :getRowStyle="getRowStyle" /> <!-- pagination-->
     <button @click="onClick">Click</button>
   </div>
 </template>
@@ -134,11 +144,11 @@ const open = ref(false)
 
 @media only screen and (width <=1800px) and (width >1500px) {
 
-.ag-theme-quartz.pay-run-table,
-.ag-theme-quartz-dark.pay-run-table,
-.ag-theme-quartz-auto-dark.pay-run-table {
-  --ag-cell-horizontal-padding: 0.3rem;
-}
+  .ag-theme-quartz.pay-run-table,
+  .ag-theme-quartz-dark.pay-run-table,
+  .ag-theme-quartz-auto-dark.pay-run-table {
+    --ag-cell-horizontal-padding: 0.3rem;
+  }
 }
 
 /* .ag-row-even {

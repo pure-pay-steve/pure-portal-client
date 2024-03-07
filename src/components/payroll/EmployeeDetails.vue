@@ -44,29 +44,24 @@ const onAddressResolved = () => {
 <template>
     <div class="flex flex-row flex-wrap gap-x-3 gap-y-4 p-4 max-h-[80vh] overflow-y-auto">
         <title-selector v-model="employee.descriptor.title" label="Title" test-id="title"></title-selector>
-        <flex-break />
         <labelled-input v-model="employee.descriptor.firstName" label="First name" case-treatment="proper-name"
             test-id="first-name" />
         <labelled-input v-model="employee.descriptor.middleNames" label="Middle name(s)" case-treatment="proper-name"
             test-id="middle-names" />
-        <labelled-input v-model="employee.descriptor.lastName" label="Surname" class="flex-grow"
-            case-treatment="proper-name" test-id="last-name" />
+        <labelled-input v-model="employee.descriptor.lastName" label="Surname" case-treatment="proper-name" size="long"
+            test-id="last-name" />
         <flex-break />
         <labelled-input v-model="employee.descriptor.preferredName" label="Preferred name" case-treatment="proper-name"
             test-id="preferred-name" />
         <flex-break />
         <date-selector v-model="employee.dateOfBirth" label="Date of birth" test-id="date-of-birth" />
-        <gender-toggle v-model="employee.gender" class="sm:ml-8" top-label="Gender" left-label="Male" right-label="Female"
-            test-id="gender" />
+        <gender-toggle v-model="employee.gender" class="sm:ml-8" top-label="Gender" left-label="Male"
+            right-label="Female" test-id="gender" />
         <flex-break />
         <address-finder v-model="employee.address" label="Address" size="full" @resolved="onAddressResolved"
             test-id="address" placeholder="Start typing address..." />
         <labelled-input v-model="employee.emailAddress" size="long" label="Email" ref="emailControl" test-id="email"
             case-treatment="all-lower" />
-        <flex-break />
-        <date-selector v-model="employee.employmentStartDate" label="Employment start date" test-id="start-date" />
-        <labelled-input v-model="employee.descriptor.payrollId" label="Payroll Id"
-            placeholder="Leave blank to auto-populate" test-id="payroll-id" />
         <flex-break />
         <tax-code v-model="employee.taxCode" test-id="tax-code" />
         <flex-break />

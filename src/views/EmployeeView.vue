@@ -40,31 +40,31 @@ const tabs = [
     { name: 'Earnings & Deductions', href: '/#/employee/1/earnings-and-deductions', current: false },
     { name: 'Pension', href: '#', current: false },
     { name: 'Statutory', href: '#', current: false },
-    { name: 'Onboarding', href: '#', current: false }
+    { name: 'Documents', href: '#/employee/1/documents', current: false },
+    { name: 'Onboarding', href: '/#/employee/1/onboarding', current: false }
 ]
 
-const onClick = (event: Event) => {
-    const target = event.target as HTMLSelectElement
+const onClick = (event: PointerEvent) => {
+    const target = event.target as any
     console.dir(event)
-    // const selectedTab = tabs.find(tab => tab.name === target.value)
-    // tabs.forEach(tab => tab.current = tab === selectedTab)
+    const selectedTab = tabs.find(tab => tab.name === target.text)
+    tabs.forEach(tab => tab.current = tab === selectedTab)
 }
 
 </script>
 
 <template>
     <!-- <div class="xl:ml-48 xl:mr-96 mx-3"> -->
-    <div class="mx-3">
-        <p45-preview v-if="showPreview" @close="onClose" />
+    <div class="mx-2">
         <div class="rounded py-2 mb-2 border border-none pl-4 font-semibold bg-slate-100"><span>Steve
-                Wilkinson</span><button class="ml-8 font-normal text-xs text-blue-700" @click="onShowPreview">View
-                P45</button></div>
+                Wilkinson</span>
+        </div>
 
         <div class="border border-feint rounded-md">
 
             <!-- <div> class="pc-4 py-b s2:px-6 lg:pl-4 font-semibold"> -->
             <div class="px-2">
-                <div class="mx-auto max-w-7xl">
+                <div class="max-w-7xl">
                     <div class="sm:hidden">
                         <label for="tabs" class="sr-only">Select a tab</label>
                         <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
@@ -80,7 +80,7 @@ const onClick = (event: Event) => {
                                 <li v-for="tab in tabs" :key="tab.name">
                                     <a :href="tab.href" :class="tab.current ? 'text-indigo-400' : ''"
                                         @click="onClick">{{
-            tab.name }}</a>
+                                tab.name }}</a>
                                 </li>
                             </ul>
                         </nav>

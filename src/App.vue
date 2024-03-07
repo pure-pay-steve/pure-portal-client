@@ -50,7 +50,7 @@ const navigation = [
       { name: 'Monthly', href: '#' },
     ],
   },
-  { name: 'Reports', href: '#', icon: CalendarIcon, current: false },
+  { name: 'Reports', href: '#/reports', icon: CalendarIcon, current: false },
   { name: 'Notes', href: '#', icon: DocumentDuplicateIcon, current: false },
 ]
 
@@ -93,13 +93,15 @@ const onClose = () => {
 -->
 
 <template>
-  <div><nav-bar @bell-click="showModal" /></div>
+  <div class="h-max-full">
+    <nav-bar @bell-click="showModal" />
 
-  <div class="flex flex-row">
-    <modal-dialog v-if="open" @close="onClose" />
-    <side-menu :navigation="navigation" class="grow-0 shrink-0 h-[90vh]" />
-    <div class="mt-8 grow max-h-[85vh] bg-bkg">
-      <RouterView />
+    <div class="flex flex-row h-max-full">
+      <modal-dialog v-if="open" @close="onClose" />
+      <side-menu :navigation="navigation" class="shrink-0" style="min-height: 100%;" />
+      <div class="mt-1 grow min-h-[90vh] bg-bkg">
+        <RouterView />
+      </div>
     </div>
   </div>
 </template>

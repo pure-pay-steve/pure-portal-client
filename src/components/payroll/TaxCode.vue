@@ -10,7 +10,7 @@
 import { ref, watch } from 'vue'
 
 import LabelledInput from '../common/LabelledInput.vue'
-import Toggle from '../common/Toggle.vue'
+import GenderToggle from '../common/GenderToggle.vue'
 import { TaxCode } from '../../model/TaxCode'
 
 const taxCode = ref('')
@@ -24,14 +24,14 @@ defineProps<{
     testId: string
 }>()
 
-watch (() => taxCode.value, (value) => {
+watch(() => taxCode.value, (value) => {
     if (isTaxCodeNonCumulative(value)) {
         isNonCumulative.value = true
     }
     setModel(true)
 })
 
-watch (() => isNonCumulative.value, (value) => {
+watch(() => isNonCumulative.value, (value) => {
     if (value) {
         updateTaxCode()
     }
@@ -62,7 +62,7 @@ const isTaxCodeNonCumulative = (taxCode: string): boolean => {
     return code.endsWith('X') || code.endsWith('M1') || code.endsWith('W1')
 }
 
-const updateTaxCode = () : boolean => {
+const updateTaxCode = (): boolean => {
     taxCode.value = taxCode.value.toUpperCase()
     if (taxCode.value.endsWith("X")) {
         taxCode.value = taxCode.value.toUpperCase().slice(0, -1)
@@ -78,8 +78,9 @@ const updateTaxCode = () : boolean => {
 
 <template>
     <div class="flex flex-row gap-x-4">
-        <labelled-input v-model="taxCode" class="w-28 " label="Tax code" case-treatment="all-upper" @leave="onLeftTaxCodeField" :test-id="testId" />
-        <toggle v-model="isNonCumulative" label="Non-cumulative" label-position="right" class="self-start mt-6" :test-id="testId"/>
+        <labelled-input v-model="taxCode" class="w-28 " label="Tax code" case-treatment="all-upper"
+            @leave="onLeftTaxCodeField" :test-id="testId" />
+        <gender-toggle top-label="&nbsp;" left-label="Cumulative" right-label="W1/M1" class="" :test-id="testId" />
     </div>
 </template>
 
