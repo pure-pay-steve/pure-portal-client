@@ -56,6 +56,7 @@ const columnDefs: ColDef<any, any>[] = [
     minWidth: 175,
     sortable: true
   },
+  makeHeader("Hours", "totalGrossPay"),
   makeHeader("Gross Pay", "totalGrossPay"),
   makeHeader("Pre-tax Deductions", "preTaxDeductions"),
   makeHeader("Taxable Pay", "totalTaxableEarnings"),

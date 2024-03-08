@@ -23,7 +23,8 @@ const open = ref(false);
 </script>
 
 <template>
-    <div class="flex flex-col gap-y-5 overflow-y-auto bg-sidemenubkg px-6 mt-1 w-2/12 rounded-md ml-1 py-4 max-h-full">
+    <div
+        class="flex flex-col gap-y-5 overflow-y-auto bg-sidemenubkg px-6 mt-1 w-[15.0rem] rounded-md ml-1 py-4 max-h-full">
         <nav class="flex flex-1 flex-col">
             <ul role="list" class="flex flex-1 flex-col gap-y-7 text-sidemenufore">
                 <li>
@@ -49,6 +50,7 @@ const open = ref(false);
                                     </div>
                                 </template>
                                 <a v-for="subItem in item.children" :key="subItem.name" :href="subItem.href"
+                                    class="ml-6"
                                     :class="[subItem.current ? '' : 'hover:bg-gray-50', 'bg-sidemenubkg block rounded-md py-2 pr-2 pl-9 text-sm leading-6']">
                                     {{ subItem.name }}</a>
                             </collapsible>

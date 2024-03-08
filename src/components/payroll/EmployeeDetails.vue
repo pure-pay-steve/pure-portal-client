@@ -70,8 +70,8 @@ const onAddressResolved = () => {
         <flex-break />
         <ni-details v-model="employee.niDetails" test-id="ni-details" />
         <directors-ni-selector v-model="employee.directorSettings" test-id="directors-ni" />
-        <student-loan-selector v-model="employee.studentLoanSettings" test-id="student-loan" />
         <flex-break />
+        <student-loan-selector v-model="employee.studentLoanSettings" test-id="student-loan" />
     </div>
 </template>
 

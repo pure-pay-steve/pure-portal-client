@@ -41,7 +41,6 @@ const tabs = [
     { name: 'Deductions', href: '#', current: false },
     { name: 'Statutory', href: '#', current: false },
     { name: 'Documents', href: '/#/business/1/documents', current: false },
-    { name: 'Onboarding', href: '/#/business/1/onboarding', current: false }
 ]
 
 const onClick = (event: PointerEvent) => {

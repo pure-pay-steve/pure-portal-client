@@ -38,6 +38,7 @@ const onSave = () => {
 const tabs = [
     { name: 'Personal Details', href: '/#/employee/1/overview', current: true },
     { name: 'Earnings & Deductions', href: '/#/employee/1/earnings-and-deductions', current: false },
+    { name: 'Benefits', href: '#', current: false },
     { name: 'Pension', href: '#', current: false },
     { name: 'Statutory', href: '#', current: false },
     { name: 'Documents', href: '/#/employee/1/documents', current: false },

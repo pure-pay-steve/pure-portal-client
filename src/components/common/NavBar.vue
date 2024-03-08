@@ -43,8 +43,13 @@ const onBellIconClick = () => {
                                 fill="white">P</text>
                         </svg>
                         <span class="pl-2 text-[1.6rem] font-bold text-gray-200">Pure Payroll</span>
-                        <span class="ml-[4.7rem] px-2 text-[1.1rem] font-bold text-gray-200 border rounded">Petes Plumbing
-                            Ltd</span>
+                        <div class="flex flex-row ml-[4rem] px-2 text-gray-200 border rounded grow-0 items-center">
+                            <span class="text-[1.1rem] font-bold text-gray-200">Petes
+                                Plumbing Ltd</span>
+                            <svg class="h-[0.6rem] pl-2" id="triangle" viewBox="0 0 10 10">
+                                <polygon points="0 0, 10 0 5 10" fill="white" />
+                            </svg>
+                        </div>
                     </div>
                     <!-- <div class="hidden lg:ml-6 lg:flex lg:space-x-8">
             Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"

@@ -44,7 +44,7 @@ const getWidth = () => {
     }
 }
 
-const toFormattedAddress = (address: Address) : string => {
+const toFormattedAddress = (address: Address): string => {
     const formattedAddress = address.formatted_address
     var result = ''
 
@@ -64,13 +64,13 @@ const onLeaveFocus = () => {
 }
 
 const getAddressSelected = (e: any) => {
-        const address = e.address as Address
-        address.displayValue = toFormattedAddress(address)
-        addressValue.value = address
-        hideGetAddressInput.value = true
-        addressValueAsText.value = address.displayValue
-        model.value = address
-        emit("resolved")
+    const address = e.address as Address
+    address.displayValue = toFormattedAddress(address)
+    addressValue.value = address
+    hideGetAddressInput.value = true
+    addressValueAsText.value = address.displayValue
+    model.value = address
+    emit("resolved")
 }
 
 const onEdit = () => {
@@ -88,19 +88,19 @@ const onEdit = () => {
 
 const enableGetAddress = () => {
     // @ts-ignore
-    getAddress.autocomplete(`a-${id.value}`, 'jdrOJaE6v0STy2YPrktLgw41803', { bind_output_fields: false})
+    getAddress.autocomplete(`a-${id.value}`, 'jdrOJaE6v0STy2YPrktLgw41803', { bind_output_fields: false })
 }
 
 const onUnload = () => {
-        document.removeEventListener('beforeunload', onUnload);
-        document.removeEventListener("getaddress-autocomplete-address-selected", getAddressSelected)
+    document.removeEventListener('beforeunload', onUnload);
+    document.removeEventListener("getaddress-autocomplete-address-selected", getAddressSelected)
 }
 
 onMounted(() => {
     console.log('Address finder mounted')
 
     // @ts-ignore
-    getAddress.autocomplete(`a-${id.value}`, 'jdrOJaE6v0STy2YPrktLgw41803', { bind_output_fields: false})
+    getAddress.autocomplete(`a-${id.value}`, 'jdrOJaE6v0STy2YPrktLgw41803', { bind_output_fields: false })
 
     document.addEventListener("getaddress-autocomplete-address-selected", getAddressSelected)
     document.addEventListener('beforeunload', onUnload)
@@ -111,17 +111,22 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="-mt-2" :class="getWidth()">
+    <div class="-mt-2 flex flex-col gap-y-1" :class="getWidth()">
         <label :for="id" class="text-sm font-medium leading-3 text-inputlabel">{{ label }}</label>
         <div class="mt-2 flex flex-row">
-            <input type="text" :id="`a-${id}`" autocomplete="off" data-1p-ignore data-lp-ignore :class="hideGetAddressInput ? 'hidden' : 'visible'"
-                @blur="onLeaveFocus" :placeholder="placeholder" :data-testid="testId"
+            <input type="text" :id="`a-${id}`" autocomplete="off" data-1p-ignore data-lp-ignore
+                :class="hideGetAddressInput ? 'hidden' : 'visible'" @blur="onLeaveFocus" :placeholder="placeholder"
+                :data-testid="testId"
                 class="grow rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-            <input v-if="hideGetAddressInput" type="text" :id="`b-${id}`" autocomplete="off" data-1p-ignore data-lp-ignore
-                @blur="onLeaveFocus" v-model="addressValueAsText" readonly
+            <input v-if="hideGetAddressInput" type="text" :id="`b-${id}`" autocomplete="off" data-1p-ignore
+                data-lp-ignore @blur="onLeaveFocus" v-model="addressValueAsText" readonly
                 class="grow rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-                <button v-if="hideGetAddressInput" class="grow-0 -ml-8 rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 w-8" @click="onEdit"><pencil-icon class="-ml-[0.5rem] h-5 w-5" aria-hidden="true" /></button>
+            <button v-if="hideGetAddressInput"
+                class="grow-0 -ml-8 rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 w-8"
+                @click="onEdit"><pencil-icon class="-ml-[0.5rem] h-5 w-5" aria-hidden="true" /></button>
         </div>
+        <button class="grow-0 text-blue-800 text-xs self-end underline underline-offset-2">Add
+            address manually</button>
     </div>
 </template>
 

@@ -29,6 +29,7 @@ import { Ref, h, ref, render } from "vue"
 
 const navigation = [
   { name: 'Business', href: '#/business/1/overview', icon: HomeIcon, current: false },
+  { name: 'Payroll', href: '#/business/1/overview', icon: HomeIcon, current: false },
   {
     name: 'Employees',
     icon: UsersIcon,
