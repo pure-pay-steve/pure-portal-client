@@ -49,7 +49,7 @@ watch(() => directorNIMethod.value, (value) => {
 </script>
 
 <template>
-    <div class="basis-full flex flex-row gap-1 items-center flex-wrap">
+    <div class="flex flex-row gap-1 items-center flex-wrap mt-4">
 
         <toggle v-model="isDirector" label="Employee is a director" label-position="right" :test-id="testId" />
         <dropdown v-model="directorNIMethod" class="sm:ml-8 max-sm:basis-full" ref="directorNIMethodControl" label="Director's NI calculation method"

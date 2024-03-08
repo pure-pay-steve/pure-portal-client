@@ -10,16 +10,19 @@ import { ref, defineModel } from "vue";
 
 import { Employee } from "../../model/Employee";
 
+// Common components
 import LabelledInput from "../common/LabelledInput.vue";
 import FlexBreak from "../common/FlexBreak.vue";
 import TitleSelector from "../common/TitleSelector.vue";
 import GenderToggle from "../common/GenderToggle.vue";
 import DateSelector from "../common/DateSelector.vue";
+import AddressFinder from "../common/AddressFinder.vue";
+
+// Domain specific components
 import TaxCode from "./TaxCode.vue";
 import NiDetails from "./NiDetails.vue";
 import DirectorsNiSelector from "./DirectorsNiSelector.vue";
 import StudentLoanSelector from "./StudentLoanSelector.vue";
-import AddressFinder from "../common/AddressFinder.vue";
 
 const emailControl = ref<null | { focus: () => void }>(null);
 
@@ -66,7 +69,6 @@ const onAddressResolved = () => {
         <tax-code v-model="employee.taxCode" test-id="tax-code" />
         <flex-break />
         <ni-details v-model="employee.niDetails" test-id="ni-details" />
-        <flex-break />
         <directors-ni-selector v-model="employee.directorSettings" test-id="directors-ni" />
         <student-loan-selector v-model="employee.studentLoanSettings" test-id="student-loan" />
         <flex-break />

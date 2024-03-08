@@ -36,12 +36,12 @@ const onSave = () => {
 }
 
 const tabs = [
-    { name: 'Personal Details', href: '/#/employee/1/overview', current: true },
-    { name: 'Earnings & Deductions', href: '/#/employee/1/earnings-and-deductions', current: false },
-    { name: 'Pension', href: '#', current: false },
+    { name: 'Overview', href: '/#/business/1/overview', current: true },
+    { name: 'Earnings', href: '/#/business/1/earnings-and-deductions', current: false },
+    { name: 'Deductions', href: '#', current: false },
     { name: 'Statutory', href: '#', current: false },
-    { name: 'Documents', href: '/#/employee/1/documents', current: false },
-    { name: 'Onboarding', href: '/#/employee/1/onboarding', current: false }
+    { name: 'Documents', href: '/#/business/1/documents', current: false },
+    { name: 'Onboarding', href: '/#/business/1/onboarding', current: false }
 ]
 
 const onClick = (event: PointerEvent) => {
@@ -56,10 +56,6 @@ const onClick = (event: PointerEvent) => {
 <template>
     <!-- <div class="xl:ml-48 xl:mr-96 mx-3"> -->
     <div class="mx-2">
-        <div class="rounded py-2 mb-2 border border-none pl-4 font-semibold bg-slate-100"><span>Steve
-                Wilkinson</span>
-        </div>
-
         <div class="border border-feint rounded-md">
 
             <!-- <div> class="pc-4 py-b s2:px-6 lg:pl-4 font-semibold"> -->

@@ -43,7 +43,7 @@ const onBellIconClick = () => {
                                 fill="white">P</text>
                         </svg>
                         <span class="pl-2 text-[1.6rem] font-bold text-gray-200">Pure Payroll</span>
-                        <span class="ml-6 px-2 text-[1.1rem] font-bold text-gray-200 border rounded">ABC Accounting
+                        <span class="ml-[4.7rem] px-2 text-[1.1rem] font-bold text-gray-200 border rounded">Petes Plumbing
                             Ltd</span>
                     </div>
                     <!-- <div class="hidden lg:ml-6 lg:flex lg:space-x-8">

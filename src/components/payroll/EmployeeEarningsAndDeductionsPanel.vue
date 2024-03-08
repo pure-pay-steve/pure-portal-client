@@ -35,31 +35,31 @@ const editMode = ref(false)
                                 class="text-blue-400" @click="onEdit" /></button>
                         <button class="border rounded h-5 w-5 p-[0.2rem] border-blue-500"><trash-icon
                                 class="text-blue-400" /></button>
-                        <div>Hourly Pay</div>
-                        <div>57.5 hours</div>
+                        <div>Hourly Pay (weekends)</div>
+                        <div>16.5 hours</div>
                         <div>£8.72</div>
                         <div>£501.40</div>
                         <button class="border rounded h-5 w-5 p-[0.2rem] border-blue-500"><pencil-icon
                                 class="text-blue-400" /></button>
                         <button class="border rounded h-5 w-5 p-[0.2rem] border-blue-500"><trash-icon
                                 class="text-blue-400" /></button>
-                        <div class="col-span-6 text-blue-700 underline underline-offset-4">Add earnings</div>
+                        <div class="col-span-6 text-blue-700 underline underline-offset-4" tabindex="0" @click="onEdit">Add earnings</div>
                     </div>
                 </div>
-                <div class="flex flex-col basis-6/12"><span class="border-b pb-1 mb-4 font-bold">Deductions</span>
+                <div class="flex flex-col basis-6/12"><span class="border-b pb-1 mb-4 font-bold mt-8">Deductions</span>
                     <div class="grid grid-cols-[1fr,auto,auto,auto,auto,auto] gap-x-4 gap-y-2 text-sm">
-                        <div class="">Salary</div>
+                        <div class="">Loan repayment</div>
+                        <div>Per month</div>
                         <div>-</div>
-                        <div>-</div>
-                        <div>£1666.67</div>
+                        <div>£100.00</div>
                         <button class="border rounded h-5 w-5 p-[0.2rem] border-blue-500"><pencil-icon
                                 class="text-blue-400" /></button>
                         <button class="border rounded h-5 w-5 p-[0.2rem] border-blue-500"><trash-icon
                                 class="text-blue-400" /></button>
-                        <div>Hourly Pay</div>
-                        <div>57.5 hours</div>
-                        <div>£8.72</div>
-                        <div>£501.40</div>
+                        <div>Company savings scheme</div>
+                        <div>Per month</div>
+                        <div>-</div>
+                        <div>£50.00</div>
                         <button class="border rounded h-5 w-5 p-[0.2rem] border-blue-500"><pencil-icon
                                 class="text-blue-400" /></button>
                         <button class="border rounded h-5 w-5 p-[0.2rem] border-blue-500"><trash-icon
